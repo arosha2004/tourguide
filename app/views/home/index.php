@@ -166,62 +166,39 @@
         </div>
         
         <div class="grid grid-3 gap-lg mt-5">
-          <!-- Tour 1 -->
-          <article class="tour-card reveal">
-            <div class="tour-img-wrapper">
-              <img src="https://www.lankatrek.com/wp-content/uploads/2023/01/dotha6_converted-e1761675652536.webp" alt="Dothalugala Nature Trail" class="tour-img" />
-              <div class="tour-badges">
-                <span class="badge-tag primary">Popular</span>
-                <span class="badge-tag light"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 1 Day</span>
+          <?php if(!empty($data['tours'])) : ?>
+            <?php foreach($data['tours'] as $index => $tour) : 
+              // Set delay classes for animation based on index
+              $delay_class = '';
+              if ($index % 3 == 1) $delay_class = 'delay-1';
+              if ($index % 3 == 2) $delay_class = 'delay-2';
+              
+              // Set badge class based on badge name
+              $badge_class = 'primary';
+              if(strtolower($tour->badge) == 'featured') $badge_class = 'accent';
+              if(strtolower($tour->badge) == 'top rated') $badge_class = 'primary';
+            ?>
+            <article class="tour-card reveal <?php echo $delay_class; ?>">
+              <div class="tour-img-wrapper">
+                <img src="<?php echo $tour->image_url; ?>" alt="<?php echo $tour->title; ?>" class="tour-img" />
+                <div class="tour-badges">
+                  <span class="badge-tag <?php echo $badge_class; ?>"><?php echo $tour->badge; ?></span>
+                  <span class="badge-tag light"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <?php echo $tour->duration; ?></span>
+                </div>
               </div>
-            </div>
-            <div class="tour-content">
-              <div class="tour-location"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Knuckles Mountain Range</div>
-              <h3 class="tour-title"><a href="#">Dothalugala Nature Trail</a></h3>
-              <div class="tour-footer">
-                <div class="tour-price">From <span>$55</span></div>
-                <a href="#" class="tour-explore">Explore <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+              <div class="tour-content">
+                <div class="tour-location"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> <?php echo $tour->location; ?></div>
+                <h3 class="tour-title"><a href="#"><?php echo $tour->title; ?></a></h3>
+                <div class="tour-footer">
+                  <div class="tour-price">From <span>$<?php echo $tour->price; ?></span></div>
+                  <a href="#" class="tour-explore">Explore <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
               </div>
-            </div>
-          </article>
-          
-          <!-- Tour 2 -->
-          <article class="tour-card reveal delay-1">
-            <div class="tour-img-wrapper">
-              <img src="https://www.lankatrek.com/wp-content/uploads/2023/01/1-min-1024x576-1-e1749228997833.webp" alt="Manigala Mountain Trail" class="tour-img" />
-              <div class="tour-badges">
-                <span class="badge-tag accent">Featured</span>
-                <span class="badge-tag light"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 1 Day</span>
-              </div>
-            </div>
-            <div class="tour-content">
-              <div class="tour-location"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Knuckles Mountain Range</div>
-              <h3 class="tour-title"><a href="#">Manigala Mountain Trail</a></h3>
-              <div class="tour-footer">
-                <div class="tour-price">From <span>$50</span></div>
-                <a href="#" class="tour-explore">Explore <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-              </div>
-            </div>
-          </article>
-          
-          <!-- Tour 3 -->
-          <article class="tour-card reveal delay-2">
-            <div class="tour-img-wrapper">
-              <img src="https://www.lankatrek.com/wp-content/uploads/2025/06/IMG_20190713_171741-scaled-1-e1749206869615.webp" alt="Knuckles Mountain Trail" class="tour-img" />
-              <div class="tour-badges">
-                <span class="badge-tag primary">Top Rated</span>
-                <span class="badge-tag light"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 2 Days</span>
-              </div>
-            </div>
-            <div class="tour-content">
-              <div class="tour-location"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Knuckles Mountain Range</div>
-              <h3 class="tour-title"><a href="#">Knuckles Trail (Five Peaks)</a></h3>
-              <div class="tour-footer">
-                <div class="tour-price">From <span>$95</span></div>
-                <a href="#" class="tour-explore">Explore <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-              </div>
-            </div>
-          </article>
+            </article>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p>No tours available at the moment. Please check back later.</p>
+          <?php endif; ?>
         </div>
         
         <div class="text-center mt-5 d-show-mobile">
