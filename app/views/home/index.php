@@ -91,7 +91,7 @@
             </ul>
             
             <div class="mt-4">
-              <a href="#about" class="btn btn-outline">Read Our Story</a>
+              <a href="#about" class="btn btn-outline">Book Now</a>
             </div>
           </div>
           
