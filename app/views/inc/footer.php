@@ -76,6 +76,7 @@
     <span class="whatsapp-badge">1</span>
   </a>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="<?php echo URLROOT; ?>/public/script.js"></script>
 </body>
 </html>

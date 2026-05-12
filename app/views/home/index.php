@@ -162,43 +162,79 @@
             <span class="subtitle">Featured Trails</span>
             <h2 class="section-title">Amazing Trekking Spots</h2>
           </div>
-          <a href="#tours" class="btn btn-outline d-none-mobile">View All Tours <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          <div class="tours-header-right">
+            <div class="swiper-nav-buttons">
+              <button class="swiper-button-prev-custom" aria-label="Previous">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button class="swiper-button-next-custom" aria-label="Next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+            <a href="#tours" class="btn btn-outline d-none-mobile">View All Tours <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
         </div>
         
-        <div class="grid grid-3 gap-lg mt-5">
-          <?php if(!empty($data['tours'])) : ?>
-            <?php foreach($data['tours'] as $index => $tour) : 
-              // Set delay classes for animation based on index
-              $delay_class = '';
-              if ($index % 3 == 1) $delay_class = 'delay-1';
-              if ($index % 3 == 2) $delay_class = 'delay-2';
-              
-              // Set badge class based on badge name
-              $badge_class = 'primary';
-              if(strtolower($tour->badge) == 'featured') $badge_class = 'accent';
-              if(strtolower($tour->badge) == 'top rated') $badge_class = 'primary';
-            ?>
-            <article class="tour-card reveal <?php echo $delay_class; ?>">
-              <div class="tour-img-wrapper">
-                <img src="<?php echo $tour->image_url; ?>" alt="<?php echo $tour->title; ?>" class="tour-img" />
-                <div class="tour-badges">
-                  <span class="badge-tag <?php echo $badge_class; ?>"><?php echo $tour->badge; ?></span>
-                  <span class="badge-tag light"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <?php echo $tour->duration; ?></span>
-                </div>
+        <div class="swiper tourSwiper mt-5">
+          <div class="swiper-wrapper">
+            <?php if(!empty($data['tours'])) : ?>
+              <?php foreach($data['tours'] as $index => $tour) : 
+                // Set badge class based on badge name
+                $badge_class = 'primary';
+                if(strtolower($tour->badge) == 'featured') $badge_class = 'accent';
+                if(strtolower($tour->badge) == 'top rated') $badge_class = 'primary';
+              ?>
+              <div class="swiper-slide">
+                <article class="tour-card">
+                  <div class="tour-img-wrapper">
+                    <img src="<?php echo $tour->image_url; ?>" alt="<?php echo $tour->title; ?>" class="tour-img" />
+                    <div class="tour-badges">
+                      <span class="badge-tag <?php echo $badge_class; ?>"><?php echo strtoupper($tour->badge); ?></span>
+                      <button class="wishlist-btn" aria-label="Add to wishlist">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                      </button>
+                    </div>
+                    <div class="camera-badge">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                      <span><?php echo rand(5, 20); // Placeholder for image count ?></span>
+                    </div>
+                  </div>
+                  <div class="tour-content">
+                    <div class="tour-rating">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFB800" stroke="#FFB800" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFB800" stroke="#FFB800" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFB800" stroke="#FFB800" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFB800" stroke="#FFB800" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFB800" stroke="#FFB800" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <div class="tour-location">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> 
+                      <?php echo $tour->location; ?>
+                    </div>
+                    <h3 class="tour-title"><a href="#"><?php echo $tour->title; ?></a></h3>
+                    
+                    <div class="tour-price-box">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                      <span>From <strong>$<?php echo $tour->price; ?></strong></span>
+                    </div>
+
+                    <div class="tour-footer">
+                      <div class="tour-duration">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 
+                        <?php echo $tour->duration; ?>
+                      </div>
+                      <a href="#" class="tour-explore">Explore <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                    </div>
+                  </div>
+                </article>
               </div>
-              <div class="tour-content">
-                <div class="tour-location"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> <?php echo $tour->location; ?></div>
-                <h3 class="tour-title"><a href="#"><?php echo $tour->title; ?></a></h3>
-                <div class="tour-footer">
-                  <div class="tour-price">From <span>$<?php echo $tour->price; ?></span></div>
-                  <a href="#" class="tour-explore">Explore <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-                </div>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <div class="swiper-slide">
+                <p>No tours available at the moment. Please check back later.</p>
               </div>
-            </article>
-            <?php endforeach; ?>
-          <?php else: ?>
-            <p>No tours available at the moment. Please check back later.</p>
-          <?php endif; ?>
+            <?php endif; ?>
+          </div>
         </div>
         
         <div class="text-center mt-5 d-show-mobile">
