@@ -23,6 +23,14 @@ class Tour
         return $this->db->single();
     }
 
+    // Get Tour Images
+    public function getTourImages($id)
+    {
+        $this->db->query('SELECT * FROM tour_images WHERE tour_id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->resultSet();
+    }
+
     // Add Tour
     public function addTour($data)
     {
