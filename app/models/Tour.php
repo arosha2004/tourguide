@@ -1,21 +1,33 @@
 <?php
-class Tour {
+class Tour
+{
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = new Database;
     }
 
     // Get All Tours
-    public function getTours() {
+    public function getTours()
+    {
         $this->db->query('SELECT * FROM tours ORDER BY created_at DESC');
         return $this->db->resultSet();
     }
 
+    // Get Tour By ID
+    public function getTourById($id)
+    {
+        $this->db->query('SELECT * FROM tours WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->single();
+    }
+
     // Add Tour
-    public function addTour($data) {
+    public function addTour($data)
+    {
         $this->db->query('INSERT INTO tours (title, location, price, badge, duration, image_url) VALUES (:title, :location, :price, :badge, :duration, :image_url)');
-        
+
         // Bind values
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':location', $data['location']);
@@ -25,7 +37,7 @@ class Tour {
         $this->db->bind(':image_url', $data['image_url']);
 
         // Execute
-        if($this->db->execute()) {
+        if ($this->db->execute()) {
             return true;
         } else {
             return false;
