@@ -18,7 +18,6 @@
     <div class="hero-overlay"></div>
 
     <div class="container hero-content reveal">
-      <span class="badge badge-glow">Sri Lanka's Best Trekking</span>
       <h1 class="hero-title">Explore Sri Lanka's<br />breathtaking trails</h1>
 
       <div class="hero-description-wrapper">
@@ -41,10 +40,6 @@
 
       <div class="hero-cta">
         <a href="#tours" class="btn btn-primary btn-lg">Explore Tours</a>
-        <a href="#about" class="btn btn-glass btn-lg">Watch Video <svg width="20" height="20" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg></a>
       </div>
     </div>
 

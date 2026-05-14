@@ -381,6 +381,7 @@ ul {
 .hero-title {
   font-size: clamp(3rem, 5vw, 5rem);
   color: #fff;
+  margin-top: 4rem;
   margin-bottom: 1.5rem;
 }
 

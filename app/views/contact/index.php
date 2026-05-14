@@ -1,161 +1,248 @@
 <?php require '../app/views/inc/header.php'; ?>
 
 <style>
-  .contact-form-container {
-    background: var(--surface);
-    padding: 3rem;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+  :root {
+    --contact-bg: #f8fafc;
+    --input-bg: #f1f5f9;
   }
-  .form-group {
-    margin-bottom: 1.5rem;
+
+  .contact-hero {
+    padding: 8rem 0 4rem;
+    text-align: center;
+    background: #fff;
   }
-  .form-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: var(--text-dark);
+
+  .contact-hero h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
   }
-  .form-control {
-    width: 100%;
-    padding: 1rem 1.5rem;
-    border: 1px solid rgba(18, 55, 42, 0.1);
-    border-radius: var(--radius-sm);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--text-dark);
-    background-color: var(--surface-off);
+
+  .info-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .info-card {
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
     transition: var(--transition);
+    border: 1px solid #f1f5f9;
   }
-  .form-control:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(18, 55, 42, 0.1);
-    background-color: var(--surface);
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
   }
-  textarea.form-control {
-    resize: vertical;
-    min-height: 150px;
-  }
-  .contact-info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .contact-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(18, 55, 42, 0.05);
-    color: var(--primary);
+
+  .info-card .icon-wrapper {
+    width: 70px;
+    height: 70px;
+    background: #f1f5f9;
+    color: #4CAF50;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    margin: 0 auto 1.5rem;
   }
-  .contact-info-text h3 {
+
+  .info-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #1a1a1a;
+  }
+
+  .info-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .contact-main-section {
+    padding: 6rem 0;
+    background: #fff;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-text-content h2 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+  }
+
+  .contact-text-content p {
     font-size: 1.1rem;
-    margin-bottom: 0.25rem;
+    line-height: 1.8;
+    color: #64748b;
   }
-  .contact-info-text p {
-    color: var(--text-body);
+
+  .contact-form {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: var(--input-bg);
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus {
+    outline: none;
+    background: #e2e8f0;
+  }
+
+  textarea.form-control {
+    min-height: 180px;
+    resize: none;
+  }
+
+  .btn-submit {
+    background: #4CAF50;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    transition: all 0.3s ease;
+  }
+
+  .btn-submit:hover {
+    background: #43a047;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.2);
+  }
+
+  @media (max-width: 992px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
   }
 </style>
 
 <main>
-  <!-- Hero Section for Contact Page -->
-  <section class="hero" id="home" style="min-height: 50vh; display: flex; align-items: center; position: relative;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.lankatrek.com/wp-content/uploads/2025/03/IMG_8620-scaled-e1749211652491.webp'); background-size: cover; background-position: center; z-index: -2;"></div>
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(10,34,24,0.7), rgba(10,34,24,0.9)); z-index: -1;"></div>
-
-    <div class="container text-center reveal" style="padding-top: 4rem;">
-      <span class="badge badge-glow">Get In Touch</span>
-      <h1 class="hero-title" style="font-size: 3.5rem; margin-bottom: 1rem;">Contact Us</h1>
-      <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Have a question or ready to book your next adventure? We're here to help you plan the perfect trek through Sri Lanka's beautiful landscapes.</p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="section bg-light" style="padding: 5rem 0;">
+  <!-- Hero Section -->
+  <section class="contact-hero">
     <div class="container">
-      <div class="grid grid-2 gap-xl align-start">
-        
-        <!-- Contact Information -->
-        <div class="contact-info reveal">
-          <h2 class="section-title" style="font-size: 2.2rem; margin-bottom: 2rem;">Let's Start Your Adventure</h2>
-          <p class="text-body mb-5" style="margin-bottom: 3rem;">Whether you are looking for a customized trekking package or need more information about our trails, our team is ready to assist you. Drop us a message or visit us!</p>
-          
-          <div class="contact-info-list">
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              </div>
-              <div class="contact-info-text">
-                <h3>Call Us</h3>
-                <p>+94 77 123 4567<br>+94 71 987 6543</p>
-              </div>
-            </div>
-            
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              </div>
-              <div class="contact-info-text">
-                <h3>Email Us</h3>
-                <p>info@lankatrek.com<br>bookings@lankatrek.com</p>
-              </div>
-            </div>
-            
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              </div>
-              <div class="contact-info-text">
-                <h3>Visit Us</h3>
-                <p>123 Adventure Road,<br>Kandy, Sri Lanka</p>
-              </div>
-            </div>
+      <h1 class="reveal">Ready for Your Next Adventure?<br>Feel Free to Contact Us</h1>
+
+      <div class="info-cards-grid reveal delay-1">
+        <!-- Office Location -->
+        <div class="info-card">
+          <div class="icon-wrapper">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
           </div>
+          <h3>Office Location</h3>
+          <p>Colombo.</p>
         </div>
 
-        <!-- Contact Form -->
-        <div class="contact-form-container reveal delay-1">
-          <h3 style="font-size: 1.5rem; margin-bottom: 2rem;">Send us a message</h3>
-          <form action="#" method="POST">
-            <div class="form-group">
-              <label for="name" class="form-label">Full Name</label>
-              <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="email" class="form-label">Email Address</label>
-              <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="subject" class="form-label">Subject</label>
-              <input type="text" id="subject" name="subject" class="form-control" placeholder="Trekking Package Inquiry" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="message" class="form-label">Message</label>
-              <textarea id="message" name="message" class="form-control" placeholder="Tell us about your plans..." required></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-primary w-full" style="width: 100%;">Send Message</button>
-          </form>
+        <!-- Email Address -->
+        <div class="info-card">
+          <div class="icon-wrapper">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <h3>Email Address</h3>
+          <p>bookings@lankatrek.com</p>
         </div>
-        
+
+        <!-- WhatsApp -->
+        <div class="info-card">
+          <div class="icon-wrapper">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+              </path>
+            </svg>
+          </div>
+          <h3>WhatsApp</h3>
+          <p>+94 77 756 2425</p>
+        </div>
       </div>
     </div>
   </section>
-  
-  <!-- Map Section -->
-  <section style="height: 400px; width: 100%; background: #e0e0e0;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.63162584107!2d80.56041773099958!3d7.294543952328456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae366266498acd3%3A0x41120b4a45a30ea6!2sKandy%2C%20Sri%20Lanka!5e0!3m2!1sen!2sus!4v1715664123456!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </section>
 
+  <!-- Contact Form Section -->
+  <section class="contact-main-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-text-content reveal">
+          <h2>Get in Touch with Us</h2>
+          <p>We're here to help you plan your perfect adventure! Our friendly team is ready to assist with travel
+            packages, bookings, and any information you need about your next trip. We love helping travelers discover
+            amazing experiences and make their dream journeys come true. Get in touch with us today and let's start
+            planning something incredible together!</p>
+        </div>
+
+        <div class="contact-form-wrapper reveal delay-1">
+          <form action="#" method="POST" class="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Contact Number</label>
+              <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Contact Number"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message (required)</label>
+              <textarea id="message" name="message" class="form-control" placeholder="Your Message" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <?php require '../app/views/inc/footer.php'; ?>
