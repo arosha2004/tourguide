@@ -5,17 +5,15 @@
   <section class="hero" id="home">
     <div class="hero-slider" id="heroSlider">
       <div class="slide active"
-        style="background-image: url('https://www.lankatrek.com/wp-content/uploads/2025/03/IMG_8620-scaled-e1749211652491.webp');">
+        style="background-image: url('<?php echo URLROOT; ?>/public/uploads/knuckles/WhatsApp%20Image%202026-05-08%20at%2006.10.11.jpeg');">
       </div>
       <div class="slide"
-        style="background-image: url('https://www.lankatrek.com/wp-content/uploads/2025/06/IMG_20190713_171741-scaled-1-e1749206869615.webp');">
+        style="background-image: url('<?php echo URLROOT; ?>/public/uploads/knuckles/WhatsApp%20Image%202026-05-08%20at%2006.10.16.jpeg');">
       </div>
       <div class="slide"
-        style="background-image: url('https://www.lankatrek.com/wp-content/uploads/2025/06/WhatsApp-Image-2025-04-17-at-5.16.21-PM-1-scaled.webp');">
+        style="background-image: url('<?php echo URLROOT; ?>/public/uploads/knuckles/WhatsApp%20Image%202026-05-08%20at%2006.10.28.jpeg');">
       </div>
     </div>
-
-    <div class="hero-overlay"></div>
 
     <div class="container hero-content reveal">
       <h1 class="hero-title">Explore Sri Lanka's<br />breathtaking trails</h1>
