@@ -208,14 +208,16 @@ ul {
   z-index: 1000;
   transition: var(--transition);
   padding: 1.5rem 0;
+  background: rgba(10, 34, 24, 0.85); /* Dark forest green background for consistency */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .header.scrolled {
   padding: 0.75rem 0;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
+  background: rgba(10, 34, 24, 0.95); /* Slightly more opaque on scroll */
   box-shadow: var(--glass-shadow);
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-inner {
@@ -249,7 +251,7 @@ ul {
 }
 
 .header.scrolled .nav-link {
-  color: var(--text-dark);
+  color: #fff;
 }
 
 .nav-link.active {
@@ -290,7 +292,7 @@ ul {
 }
 
 .header.scrolled .search-toggle {
-  color: var(--text-dark);
+  color: #fff;
 }
 
 .menu-toggle {
@@ -302,7 +304,7 @@ ul {
 }
 
 .header.scrolled .menu-toggle {
-  color: var(--text-dark);
+  color: #fff;
 }
 
 /* Hero Section */
@@ -1100,6 +1102,7 @@ ul {
     padding: 6rem 2rem 2rem;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
+    display: flex;
     align-items: flex-start;
   }
   
@@ -1262,7 +1265,7 @@ ul {
   }
   .feature-card { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); }
   .feature-card:last-child { border-bottom: none; }
-  .nav { display: none; }
+  /* .nav visibility handled in previous media query */
   .menu-toggle { display: block; }
   .squiggle-arrow { display: none; }
   
