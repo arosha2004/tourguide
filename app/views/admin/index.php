@@ -23,6 +23,7 @@
             <h1>Manage Tours</h1>
             <div>
                 <a href="<?php echo URLROOT; ?>/admin/add" class="btn">Add New Tour</a>
+                <a href="<?php echo URLROOT; ?>/admin/gallery" class="btn" style="background:#28a745;">Manage Gallery</a>
                 <a href="<?php echo URLROOT; ?>" class="btn" style="background:#6c757d;">Back to Site</a>
             </div>
         </div>

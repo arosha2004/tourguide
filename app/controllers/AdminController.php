@@ -1,9 +1,11 @@
 <?php
 class AdminController extends Controller {
     private $tourModel;
+    private $galleryModel;
 
     public function __construct() {
         $this->tourModel = $this->model('Tour');
+        $this->galleryModel = $this->model('Gallery');
     }
 
     public function index() {
@@ -58,6 +60,48 @@ class AdminController extends Controller {
                 'price_err' => '',
             ];
             $this->view('admin/add', $data);
+        }
+    }
+
+    public function gallery() {
+        $images = $this->galleryModel->getImages();
+        $data = [
+            'title' => 'Admin Panel - Manage Gallery',
+            'images' => $images
+        ];
+        $this->view('admin/gallery', $data);
+    }
+
+    public function addGalleryImage() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $image_url = '';
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+                $target_dir = dirname(dirname(dirname(__FILE__))) . "/public/uploads/gallery/";
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777, true);
+                }
+                $file_extension = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+                $file_name = time() . '_' . uniqid() . '.' . $file_extension;
+                $target_file = $target_dir . $file_name;
+                
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $image_url = URLROOT . '/public/uploads/gallery/' . $file_name;
+                }
+            }
+
+            if (!empty($image_url)) {
+                $data = ['image_url' => $image_url];
+                if ($this->galleryModel->addImage($data)) {
+                    header('Location: ' . URLROOT . '/admin/gallery');
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                die('Please upload an image');
+            }
+        } else {
+            $data = ['title' => 'Add Gallery Image'];
+            $this->view('admin/add_gallery', $data);
         }
     }
 }

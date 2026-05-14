@@ -27,7 +27,7 @@
         <a href="<?php echo URLROOT; ?>/#about" class="nav-link">About Us</a>
         <a href="<?php echo URLROOT; ?>/tours" class="nav-link">Tours <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
         <a href="<?php echo URLROOT; ?>/#blog" class="nav-link">Blog</a>
-        <a href="<?php echo URLROOT; ?>/#gallery" class="nav-link">Gallery</a>
+        <a href="<?php echo URLROOT; ?>/gallery" class="nav-link">Gallery</a>
         <a href="<?php echo URLROOT; ?>/#testimonials" class="nav-link">Testimonials</a>
         <a href="<?php echo URLROOT; ?>/#contact" class="nav-link">Contact Us</a>
       </nav>

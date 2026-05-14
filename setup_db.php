@@ -28,6 +28,16 @@ try {
     $dbh->exec($sql);
     echo "Table 'tours' created successfully.<br>";
     
+    // Create gallery table
+    $sql = "CREATE TABLE IF NOT EXISTS gallery (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        image_url VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )";
+    $dbh->exec($sql);
+    echo "Table 'gallery' created successfully.<br>";
+
+    
 } catch (PDOException $e) {
     die("DB ERROR: " . $e->getMessage());
 }
