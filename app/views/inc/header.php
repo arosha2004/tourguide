@@ -11,12 +11,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/styles.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/styles.css?v=<?php echo time(); ?>" />
   <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/logo.png" />
 </head>
 <body>
+  <?php 
+    // Detect if we are on the home page
+    $is_home = ($data['title'] == 'The Ceylon Trek | Sri Lanka\'s Best Trekking & Hiking Tours');
+  ?>
   <!-- Navigation -->
-  <header class="header" id="header">
+  <header class="header <?php echo !$is_home ? 'header-subpage' : ''; ?>" id="header">
     <div class="container header-inner">
       <a href="#home" class="brand">
         <img src="<?php echo URLROOT; ?>/public/logo.png" alt="The Ceylon Trek Logo" class="brand-logo" />

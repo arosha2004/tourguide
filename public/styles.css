@@ -208,16 +208,14 @@ ul {
   z-index: 1000;
   transition: var(--transition);
   padding: 1.5rem 0;
-  background: rgba(10, 34, 24, 0.85); /* Dark forest green background for consistency */
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .header.scrolled {
   padding: 0.75rem 0;
-  background: rgba(10, 34, 24, 0.95); /* Slightly more opaque on scroll */
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
   box-shadow: var(--glass-shadow);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .header-inner {
@@ -251,7 +249,14 @@ ul {
 }
 
 .header.scrolled .nav-link {
-  color: #fff;
+  color: var(--text-dark);
+}
+
+/* Subpage Navbar Visibility */
+.header.header-subpage:not(.scrolled) .nav-link,
+.header.header-subpage:not(.scrolled) .search-toggle,
+.header.header-subpage:not(.scrolled) .menu-toggle {
+  color: var(--text-dark);
 }
 
 .nav-link.active {
@@ -292,7 +297,7 @@ ul {
 }
 
 .header.scrolled .search-toggle {
-  color: #fff;
+  color: var(--text-dark);
 }
 
 .menu-toggle {
@@ -304,7 +309,7 @@ ul {
 }
 
 .header.scrolled .menu-toggle {
-  color: #fff;
+  color: var(--text-dark);
 }
 
 /* Hero Section */
