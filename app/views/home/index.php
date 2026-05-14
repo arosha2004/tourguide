@@ -43,56 +43,7 @@
       </div>
     </div>
 
-    <!-- Overlapping feature cards -->
-    <div class="container hero-features-container">
-      <div class="hero-features reveal delay-1">
-        <div class="feature-card">
-          <h3>Climb</h3>
-          <div class="feature-icon-simple">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M3 20L9 11L13 17L17 11L21 20H3Z"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="feature-card">
-          <h3>Waterfall Hunt</h3>
-          <div class="feature-icon-simple">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path
-                d="M4 8C4 8 7 7 12 7C17 7 20 8 20 8M4 12C4 12 7 11 12 11C17 11 20 12 20 12M4 16C4 16 7 15 12 15C17 15 20 16 20 16">
-              </path>
-            </svg>
-          </div>
-        </div>
-        <div class="feature-card">
-          <h3>Village Experience</h3>
-          <div class="feature-icon-simple">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M3 10L12 3L21 10V20H3V10Z"></path>
-              <path d="M9 20V12H15V20"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="feature-card">
-          <h3>Adventure</h3>
-          <div class="feature-icon-simple">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 3L4 18H20L12 3Z"></path>
-              <path d="M12 18V13"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="feature-card">
-          <h3>Explore</h3>
-          <div class="feature-icon-simple">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2C7.58 2 4 5.58 4 10C4 15.25 12 22 12 22C12 22 20 15.25 20 10C20 5.58 16.42 2 12 2Z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </section>
 
   <!-- About Section -->

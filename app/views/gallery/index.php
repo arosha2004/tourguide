@@ -3,7 +3,7 @@
 <section class="gallery-hero" style="padding: 100px 0 40px; text-align: center; background: #f9f9f9;">
     <div class="container">
         <span style="color: #4caf50; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 14px;">Capture the adventure</span>
-        <h1 style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 800; color: #1a1a1a; margin-top: 10px;">Sri Lanka Trekking Gallery</h1>
+        <h1 class="gallery-title">Sri Lanka Trekking Gallery</h1>
     </div>
 </section>
 
@@ -34,6 +34,14 @@
 </div>
 
 <style>
+.gallery-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-top: 10px;
+}
+
 .masonry-grid {
     column-count: 3;
     column-gap: 20px;
@@ -145,7 +153,7 @@
     .masonry-grid {
         column-count: 1;
     }
-    .gallery-hero h1 {
+    .gallery-title {
         font-size: 32px;
     }
     .close-lightbox {

@@ -19,10 +19,10 @@
 
     <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: -1;"></div>
 
-    <div class="container hero-content reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+    <div class="container hero-content reveal grid grid-2" style="gap: 2rem; align-items: center;">
       <div class="hero-text-left">
         <p class="text-accent mb-2" style="color: #ffaa00; font-weight: 500; font-size: 1.1rem;">Explore Sri Lanka in the raw nature with Lanka Trek - the trusted name in guided hiking and trekking tours.</p>
-        <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.2; margin-bottom: 2rem;">Where every trek reveals<br/>nature's true beauty</h1>
+        <h1 class="hero-title" style="line-height: 1.2; margin-bottom: 2rem;">Where every trek reveals<br/>nature's true beauty</h1>
         <a href="<?php echo URLROOT; ?>/tours" class="btn btn-primary btn-lg" style="background-color: #4CAF50; border: none;">Explore Tours</a>
       </div>
       
@@ -60,7 +60,7 @@
   <section class="section our-promise bg-light" style="padding: 5rem 0; background: #f9f9f9;">
     <div class="container">
       <div class="grid grid-2 align-center gap-xl">
-        <div class="promise-images reveal" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 1rem;">
+        <div class="promise-images reveal grid grid-2" style="grid-template-rows: auto auto; gap: 1rem;">
            <img src="https://www.lankatrek.com/wp-content/uploads/2025/06/IMG_20190713_171741-scaled-1-e1749206869615.webp" style="grid-column: 1 / 2; grid-row: 1 / 2; width: 100%; border-radius: 10px; height: 200px; object-fit: cover;" alt="Trekking" />
            <img src="https://www.lankatrek.com/wp-content/uploads/2025/03/IMG_8620-scaled-e1749211652491.webp" style="grid-column: 1 / 2; grid-row: 2 / 3; width: 100%; border-radius: 10px; height: 200px; object-fit: cover;" alt="Waterfall" />
            <img src="https://www.lankatrek.com/wp-content/uploads/2025/06/WhatsApp-Image-2025-04-17-at-5.16.21-PM-1-scaled.webp" style="grid-column: 2 / 3; grid-row: 1 / 3; width: 100%; border-radius: 10px; height: 100%; object-fit: cover;" alt="Hiking Group" />

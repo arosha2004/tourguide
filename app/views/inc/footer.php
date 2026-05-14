@@ -1,6 +1,6 @@
-  <footer class="footer" style="background: #1a1a1a; color: #fff; padding: 5rem 0 2rem;">
+  <footer class="footer">
     <div class="container">
-      <div class="footer-grid" style="display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4rem;">
+      <div class="footer-grid">
         <!-- Brand & Social -->
         <div class="footer-col">
           <img src="<?php echo URLROOT; ?>/public/logo.png" alt="The Ceylon Trek Logo" class="footer-logo" style="height: 50px; margin-bottom: 1.5rem;" />
@@ -23,7 +23,7 @@
         <!-- Quick Links -->
         <div class="footer-col">
           <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 2rem;">Policy</h4>
-          <ul class="footer-links" style="list-style: none; display: grid; gap: 1rem;">
+          <ul class="footer-links">
             <li><a href="#" style="color: #cbd5e1; display: flex; align-items: center; gap: 0.75rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg> Privacy Policy</a></li>
             <li><a href="#" style="color: #cbd5e1; display: flex; align-items: center; gap: 0.75rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="3"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Terms & Conditions</a></li>
             <li><a href="#" style="color: #cbd5e1; display: flex; align-items: center; gap: 0.75rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="3"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"></path><path d="M12 8v4l3 3"></path></svg> Refund Policy</a></li>
@@ -33,7 +33,7 @@
         <!-- Contact -->
         <div class="footer-col">
           <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 2rem;">Contact</h4>
-          <ul class="footer-contact-list" style="list-style: none; display: grid; gap: 1.5rem;">
+          <ul class="footer-contact">
             <li style="display: flex; gap: 1rem; align-items: center;">
               <div style="width: 32px; height: 32px; border-radius: 50%; background: #334155; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
               <div>
@@ -59,7 +59,7 @@
         </div>
       </div>
       
-      <div class="footer-bottom" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: #94a3b8;">
+      <div class="footer-bottom">
         <p>&copy; 2025 lankatrek.com – Developed by AshenBiz</p>
         <div style="display: flex; align-items: center; gap: 0.5rem;">
            <img src="https://flagcdn.com/w20/gb.png" alt="UK Flag" style="height: 12px;" />
