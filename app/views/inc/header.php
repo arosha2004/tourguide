@@ -29,7 +29,7 @@
         <a href="<?php echo URLROOT; ?>/#blog" class="nav-link">Blog</a>
         <a href="<?php echo URLROOT; ?>/gallery" class="nav-link">Gallery</a>
         <a href="<?php echo URLROOT; ?>/#testimonials" class="nav-link">Testimonials</a>
-        <a href="<?php echo URLROOT; ?>/#contact" class="nav-link">Contact Us</a>
+        <a href="<?php echo URLROOT; ?>/contact" class="nav-link">Contact Us</a>
       </nav>
       
       <div class="header-actions">
