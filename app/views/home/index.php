@@ -240,7 +240,7 @@
               </svg>
             </button>
           </div>
-          <a href="#tours" class="btn btn-outline d-none-mobile">View All Tours <svg width="18" height="18"
+          <a href="<?php echo URLROOT; ?>/tours" class="btn btn-outline d-none-mobile">View All Tours <svg width="18" height="18"
               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -353,7 +353,7 @@
       </div>
 
       <div class="text-center mt-5 d-show-mobile">
-        <a href="#tours" class="btn btn-outline">View All Tours</a>
+        <a href="<?php echo URLROOT; ?>/tours" class="btn btn-outline">View All Tours</a>
       </div>
     </div>
   </section>
