@@ -43,6 +43,11 @@
   <?php 
     // Detect if we are on the home page
     $is_home = ($data['title'] == 'The Ceylon Trek | Sri Lanka\'s Best Trekking & Hiking Tours');
+    
+    // Determine the active page
+    $current_page = isset($_GET['url']) ? rtrim($_GET['url'], '/') : 'home';
+    $url_parts = explode('/', $current_page);
+    $base_page = strtolower($url_parts[0]);
   ?>
   <!-- Navigation -->
   <header class="header <?php echo !$is_home ? 'header-subpage' : ''; ?>" id="header">
@@ -52,11 +57,11 @@
       </a>
       
       <nav class="nav" id="navMenu">
-        <a href="<?php echo URLROOT; ?>/#home" class="nav-link active">Home</a>
-        <a href="<?php echo URLROOT; ?>/about" class="nav-link">About Us</a>
-        <a href="<?php echo URLROOT; ?>/tours" class="nav-link">Tours <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
-        <a href="<?php echo URLROOT; ?>/gallery" class="nav-link">Gallery</a>
-        <a href="<?php echo URLROOT; ?>/contact" class="nav-link">Contact Us</a>
+        <a href="<?php echo URLROOT; ?>/#home" class="nav-link <?php echo ($base_page == 'home' || $base_page == '') ? 'active' : ''; ?>">Home</a>
+        <a href="<?php echo URLROOT; ?>/about" class="nav-link <?php echo ($base_page == 'about') ? 'active' : ''; ?>">About Us</a>
+        <a href="<?php echo URLROOT; ?>/tours" class="nav-link <?php echo ($base_page == 'tours') ? 'active' : ''; ?>">Tours <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+        <a href="<?php echo URLROOT; ?>/gallery" class="nav-link <?php echo ($base_page == 'gallery') ? 'active' : ''; ?>">Gallery</a>
+        <a href="<?php echo URLROOT; ?>/contact" class="nav-link <?php echo ($base_page == 'contact') ? 'active' : ''; ?>">Contact Us</a>
       </nav>
       
       <div class="header-actions">
