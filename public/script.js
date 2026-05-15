@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchToggle = document.querySelector('.search-toggle');
   const searchOverlay = document.getElementById('searchOverlay');
   const searchInput = document.getElementById('searchInput');
-  
+
   // Header scroll effect
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
       header.classList.remove('scrolled');
     }
   });
-  
+
   // Mobile menu
   if (menuToggle && navMenu) {
     menuToggle.addEventListener('click', () => {
       navMenu.classList.toggle('open');
-      
+
       // Update toggle icon
       if (navMenu.classList.contains('open')) {
         menuToggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
@@ -29,17 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
         menuToggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
       }
     });
-    
+
     // Close menu when clicking links
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('open');
         menuToggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
-        
+
         // Update active class
         navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
       });
+    });
+  }
+
   // Search Toggle
   if (searchToggle && searchOverlay) {
     searchToggle.addEventListener('click', (e) => {
@@ -63,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchOverlay.classList.remove('open');
       }
     });
-    
+
     // Prevent clicks inside the dropdown from closing it
     searchOverlay.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -73,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hero Slider
   const slides = document.querySelectorAll('#heroSlider .slide');
   let currentSlide = 0;
-  
+
   if (slides.length > 1) {
     setInterval(() => {
       slides[currentSlide].classList.remove('active');
@@ -84,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Reveal Animations on Scroll
   const revealElements = document.querySelectorAll('.reveal');
-  
+
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -97,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     threshold: 0.15,
     rootMargin: "0px 0px -50px 0px"
   });
-  
+
   revealElements.forEach(el => {
     revealObserver.observe(el);
   });
