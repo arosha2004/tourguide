@@ -132,10 +132,9 @@
 
                 <!-- CTA -->
                 <div class="tsd-cta">
-                    <a href="https://wa.me/94753949483?text=Hi!%20I'm%20interested%20in%20booking%20the%20<?php echo urlencode($data['tour']->title); ?>%20tour." class="btn btn-primary btn-lg tsd-book-btn" target="_blank">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.101.546 4.073 1.497 5.787L.057 24l6.303-1.474C7.937 23.447 9.928 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.782 9.782 0 0 1-5.02-1.382l-.36-.214-3.742.875.897-3.655-.234-.376A9.77 9.77 0 0 1 2.182 12C2.182 6.563 6.563 2.182 12 2.182S21.818 6.563 21.818 12 17.437 21.818 12 21.818z"/></svg>
-                        Book on WhatsApp
-                    </a>
+                    <button onclick="openBookingModal()" class="btn btn-primary btn-lg tsd-book-btn">
+                        Book Now
+                    </button>
                     <a href="<?php echo URLROOT; ?>" class="btn btn-outline btn-lg">← Back to Home</a>
                 </div>
             </div>
@@ -153,6 +152,37 @@
         <div class="lb-counter" id="lbCounter"></div>
     </div>
     <button class="lb-next" onclick="event.stopPropagation(); shiftLightbox(1)">›</button>
+</div>
+
+<!-- BOOKING MODAL -->
+<div id="bookingModal" class="booking-modal-overlay" onclick="closeBookingModal()">
+    <div class="booking-modal-content" onclick="event.stopPropagation()">
+        <button class="bm-close" onclick="closeBookingModal()">✕</button>
+        <h3 class="bm-title">Book <?php echo htmlspecialchars($data['tour']->title); ?></h3>
+        <form id="bookingForm" onsubmit="submitBooking(event)">
+            <div class="bm-form-group">
+                <label>Full Name</label>
+                <input type="text" id="bmName" class="bm-input" placeholder="John Doe" required>
+            </div>
+            <div class="bm-form-group">
+                <label>Contact Number</label>
+                <input type="tel" id="bmContact" class="bm-input" placeholder="+1 234 567 8900" required>
+            </div>
+            <div class="bm-row">
+                <div class="bm-form-group">
+                    <label>Travelers</label>
+                    <input type="number" id="bmTravelers" class="bm-input" min="1" value="1" required>
+                </div>
+                <div class="bm-form-group">
+                    <label>Preferred Date</label>
+                    <input type="date" id="bmDate" class="bm-input" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg bm-submit">
+                Proceed to WhatsApp
+            </button>
+        </form>
+    </div>
 </div>
 
 <style>
@@ -497,6 +527,98 @@
 .lb-next { right: 1rem; }
 .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.2); }
 
+/* BOOKING MODAL STYLES */
+.booking-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.25s ease;
+}
+
+.booking-modal-overlay.active { display: flex; }
+
+.booking-modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    animation: zoomIn 0.3s ease;
+}
+
+.bm-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: #f1f3f5;
+    border: none;
+    color: #495057;
+    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.bm-close:hover { background: #e9ecef; color: #212529; }
+
+.bm-title {
+    margin-top: 0;
+    color: var(--dark);
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 1.8rem;
+    line-height: 1.3;
+}
+
+.bm-form-group { margin-bottom: 1.25rem; }
+.bm-form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #495057;
+    font-size: 0.9rem;
+}
+
+.bm-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bm-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+}
+
+.bm-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.bm-submit {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.35);
+}
+
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes zoomIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
@@ -551,13 +673,49 @@ function updateLightbox() {
     document.getElementById('lbCounter').textContent = (currentLbIndex + 1) + ' / ' + allImages.length;
 }
 
+// Booking Modal Functions
+function openBookingModal() {
+    document.getElementById('bookingModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBookingModal() {
+    document.getElementById('bookingModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function submitBooking(e) {
+    e.preventDefault();
+    const name = document.getElementById('bmName').value;
+    const contact = document.getElementById('bmContact').value;
+    const travelers = document.getElementById('bmTravelers').value;
+    const date = document.getElementById('bmDate').value;
+    const tourTitle = "<?php echo addslashes($data['tour']->title); ?>";
+    
+    let text = `Hi! I'm interested in booking the *${tourTitle}* tour.\n\n`;
+    text += `*Name:* ${name}\n`;
+    text += `*Contact Number:* ${contact}\n`;
+    text += `*Travelers:* ${travelers}\n`;
+    text += `*Preferred Date:* ${date}\n\n`;
+    text += `Please let me know the availability and next steps.`;
+    
+    const waUrl = `https://wa.me/94753949483?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+    closeBookingModal();
+}
+
 // Keyboard navigation
 document.addEventListener('keydown', function(e) {
     const lb = document.getElementById('lightbox');
-    if (!lb.classList.contains('active')) return;
-    if (e.key === 'ArrowLeft') shiftLightbox(-1);
-    if (e.key === 'ArrowRight') shiftLightbox(1);
-    if (e.key === 'Escape') closeLightbox();
+    const bm = document.getElementById('bookingModal');
+    
+    if (lb.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') shiftLightbox(-1);
+        if (e.key === 'ArrowRight') shiftLightbox(1);
+        if (e.key === 'Escape') closeLightbox();
+    } else if (bm && bm.classList.contains('active')) {
+        if (e.key === 'Escape') closeBookingModal();
+    }
 });
 </script>
 
