@@ -453,9 +453,7 @@ ul {
 }
 
 /* About Section */
-.about {
-  /* padding-top: 10rem; - removed space for absolute hero features */
-}
+/* empty .about removed */
 
 .check-list {
   margin-top: 2rem;
@@ -1197,9 +1195,7 @@ ul {
 .delay-3 { animation-delay: 0.6s; }
 
 /* Responsive Adjustments */
-
-
-
+@media (max-width: 768px) {
   /* .nav visibility handled in previous media query */
   .menu-toggle { display: block; }
   .squiggle-arrow { display: none; }
