@@ -4,7 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?php echo $data['title']; ?></title>
-  <meta name="description" content="The Ceylon Trek offers the best Sri Lanka hiking and trekking Tours. Explore unique trails, stunning waterfalls & misty peaks in Sri Lanka. Book Now!" />
+  
+  <?php
+    $default_description = "The Ceylon Trek offers the best Sri Lanka hiking and trekking Tours. Explore unique trails, stunning waterfalls & misty peaks in Sri Lanka. Book Now!";
+    $description = isset($data['description']) ? $data['description'] : $default_description;
+    
+    $default_keywords = "Sri Lanka trekking, hiking tours, Ceylon trek, mountain trails, waterfalls, adventure travel";
+    $keywords = isset($data['keywords']) ? $data['keywords'] : $default_keywords;
+    
+    $og_image = isset($data['og_image']) 
+        ? (strpos($data['og_image'], 'http') === 0 ? $data['og_image'] : asset_url($data['og_image'])) 
+        : URLROOT . '/public/logo.png';
+        
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+    $canonical_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+  ?>
+  <meta name="description" content="<?php echo htmlspecialchars($description); ?>" />
+  <meta name="keywords" content="<?php echo htmlspecialchars($keywords); ?>" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<?php echo htmlspecialchars($canonical_url); ?>" />
+  <meta property="og:title" content="<?php echo htmlspecialchars($data['title']); ?>" />
+  <meta property="og:description" content="<?php echo htmlspecialchars($description); ?>" />
+  <meta property="og:image" content="<?php echo htmlspecialchars($og_image); ?>" />
+  
+  <link rel="canonical" href="<?php echo htmlspecialchars($canonical_url); ?>" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

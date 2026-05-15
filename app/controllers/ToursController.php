@@ -7,6 +7,8 @@ class ToursController extends Controller {
         
         $data = [
             'title' => 'All Tours | The Ceylon Trek',
+            'description' => 'Explore our wide range of trekking and hiking tours in Sri Lanka. Find the perfect adventure for your skill level.',
+            'keywords' => 'Sri Lanka tours, trekking packages, hiking adventures, Ceylon trek tours',
             'tours' => $tours
         ];
         
@@ -23,8 +25,13 @@ class ToursController extends Controller {
             exit;
         }
         
+        $description = isset($tour->description) ? substr(strip_tags($tour->description), 0, 157) . '...' : 'Join us for an exciting trekking tour in Sri Lanka. Experience breathtaking views and nature.';
+        
         $data = [
             'title' => $tour->title . ' | The Ceylon Trek',
+            'description' => $description,
+            'keywords' => $tour->title . ', Sri Lanka trekking, hiking tour',
+            'og_image' => $tour->image_url,
             'tour' => $tour,
             'images' => $images
         ];

@@ -10,9 +10,9 @@
 <section class="gallery-content" style="padding: 40px 0 80px;">
     <div class="container">
         <div class="masonry-grid">
-            <?php foreach($data['images'] as $image) : ?>
+            <?php foreach($data['images'] as $index => $image) : ?>
             <div class="masonry-item">
-                <img src="<?php echo asset_url($image->image_url); ?>" alt="Trekking in Sri Lanka">
+                <img src="<?php echo asset_url($image->image_url); ?>" alt="Sri Lanka trekking gallery image <?php echo $index + 1; ?>">
                 <div class="item-overlay">
                     <div class="overlay-icon">+</div>
                 </div>
@@ -30,7 +30,7 @@
 
 <div id="lightbox" class="lightbox">
     <span class="close-lightbox">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
+    <img class="lightbox-content" id="lightbox-img" alt="Gallery preview enlarged">
 </div>
 
 <style>
