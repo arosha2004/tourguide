@@ -31,7 +31,7 @@ class AdminController extends Controller {
                 $file_name = time() . '_' . uniqid() . '.' . $ext;
                 $target_file = $upload_dir . $file_name;
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                    $image_url = URLROOT . '/public/uploads/tours/' . $file_name;
+                    $image_url = '/public/uploads/tours/' . $file_name; // relative path
                 }
             }
 
@@ -58,7 +58,7 @@ class AdminController extends Controller {
                             $file_name = time() . '_' . uniqid() . '_' . $i . '.' . $ext;
                             $target_file = $upload_dir . $file_name;
                             if (move_uploaded_file($files["tmp_name"][$i], $target_file)) {
-                                $extra_url = URLROOT . '/public/uploads/tours/' . $file_name;
+                                $extra_url = '/public/uploads/tours/' . $file_name; // relative path
                                 $this->tourModel->addTourImage($tour_id, $extra_url, $i);
                             }
                         }
@@ -101,7 +101,7 @@ class AdminController extends Controller {
                 $target_file = $target_dir . $file_name;
                 
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                    $image_url = URLROOT . '/public/uploads/gallery/' . $file_name;
+                    $image_url = '/public/uploads/gallery/' . $file_name; // relative path
                 }
             }
 

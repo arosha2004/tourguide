@@ -1,5 +1,20 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # -- Force HTTPS (uncomment on Namecheap production) --
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # -- Route everything through the public/ front-controller --
   RewriteRule ^$ public/ [L]
   RewriteRule (.*) public/$1 [L]
 </IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Protect sensitive files from direct access
+<FilesMatch "^(config\.php|\.env)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>

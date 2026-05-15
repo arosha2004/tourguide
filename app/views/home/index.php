@@ -206,7 +206,7 @@
               <div class="swiper-slide">
                 <article class="tour-card">
                   <div class="tour-img-wrapper">
-                    <img src="<?php echo $tour->image_url; ?>" alt="<?php echo $tour->title; ?>" class="tour-img" />
+                    <img src="<?php echo asset_url($tour->image_url); ?>" alt="<?php echo $tour->title; ?>" class="tour-img" />
                     <div class="tour-badges">
                       <span class="badge-tag <?php echo $badge_class; ?>"><?php echo strtoupper($tour->badge); ?></span>
                       <button class="wishlist-btn" aria-label="Add to wishlist">

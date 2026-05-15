@@ -35,7 +35,7 @@
             <div class="tsd-mosaic reveal" id="imageMosaic">
                 <!-- Large cover = slot 0 -->
                 <div class="mosaic-main" onclick="openLightbox(0)">
-                    <img src="<?php echo $data['tour']->image_url; ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?>" loading="lazy">
+                    <img src="<?php echo asset_url($data['tour']->image_url); ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?>" loading="lazy">
                     <div class="mosaic-overlay">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </div>
@@ -49,7 +49,7 @@
                     ?>
                     <?php foreach($side_images as $idx => $img): ?>
                     <div class="mosaic-thumb" onclick="openLightbox(<?php echo $idx + 1; ?>)">
-                        <img src="<?php echo $img->image_url; ?>" alt="Tour image <?php echo $idx + 1; ?>" loading="lazy">
+                        <img src="<?php echo asset_url($img->image_url); ?>" alt="Tour image <?php echo $idx + 1; ?>" loading="lazy">
                         <div class="mosaic-overlay">
                             <?php if($idx === 3 && $remaining > 0): ?>
                             <span class="mosaic-more">+<?php echo $remaining; ?> more</span>
@@ -67,7 +67,7 @@
             <div class="tsd-strip reveal">
                 <?php foreach(array_slice($extra_images, 4) as $sidx => $simg): ?>
                 <div class="strip-item" onclick="openLightbox(<?php echo $sidx + 5; ?>)">
-                    <img src="<?php echo $simg->image_url; ?>" alt="Tour image" loading="lazy">
+                    <img src="<?php echo asset_url($simg->image_url); ?>" alt="Tour image" loading="lazy">
                     <div class="mosaic-overlay">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </div>
@@ -79,7 +79,7 @@
             <?php else: ?>
             <!-- Only cover image -->
             <div class="tsd-single-image reveal">
-                <img src="<?php echo $data['tour']->image_url; ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?>" onclick="openLightbox(0)">
+                <img src="<?php echo asset_url($data['tour']->image_url); ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?>" onclick="openLightbox(0)">
                 <div class="mosaic-overlay">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </div>
@@ -517,9 +517,9 @@
 <script>
 // Build all images array for lightbox
 const allImages = [
-    '<?php echo addslashes($data['tour']->image_url); ?>'
+    '<?php echo addslashes(asset_url($data['tour']->image_url)); ?>'
     <?php foreach($data['images'] as $img): ?>
-    , '<?php echo addslashes($img->image_url); ?>'
+    , '<?php echo addslashes(asset_url($img->image_url)); ?>'
     <?php endforeach; ?>
 ];
 

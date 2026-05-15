@@ -12,7 +12,7 @@
         <div class="masonry-grid">
             <?php foreach($data['images'] as $image) : ?>
             <div class="masonry-item">
-                <img src="<?php echo $image->image_url; ?>" alt="Trekking in Sri Lanka">
+                <img src="<?php echo asset_url($image->image_url); ?>" alt="Trekking in Sri Lanka">
                 <div class="item-overlay">
                     <div class="overlay-icon">+</div>
                 </div>
