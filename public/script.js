@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menuToggle');
   const navMenu = document.getElementById('navMenu');
   const navLinks = document.querySelectorAll('.nav-link');
+  const searchToggle = document.querySelector('.search-toggle');
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchInput = document.getElementById('searchInput');
   
   // Header scroll effect
   window.addEventListener('scroll', () => {
@@ -37,6 +40,33 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
       });
+  // Search Toggle
+  if (searchToggle && searchOverlay) {
+    searchToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchOverlay.classList.toggle('open');
+      if (searchOverlay.classList.contains('open')) {
+        setTimeout(() => searchInput.focus(), 100);
+      }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchOverlay.classList.contains('open')) {
+        searchOverlay.classList.remove('open');
+      }
+    });
+
+    // Close when clicking outside the container
+    document.addEventListener('click', (e) => {
+      if (searchOverlay.classList.contains('open') && !searchOverlay.contains(e.target) && e.target !== searchToggle) {
+        searchOverlay.classList.remove('open');
+      }
+    });
+    
+    // Prevent clicks inside the dropdown from closing it
+    searchOverlay.addEventListener('click', (e) => {
+      e.stopPropagation();
     });
   }
 

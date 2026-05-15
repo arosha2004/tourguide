@@ -31,6 +31,14 @@ class Tour
         return $this->db->resultSet();
     }
 
+    // Search Tours
+    public function searchTours($keyword)
+    {
+        $this->db->query('SELECT * FROM tours WHERE title LIKE :keyword OR location LIKE :keyword OR description LIKE :keyword ORDER BY created_at DESC');
+        $this->db->bind(':keyword', '%' . $keyword . '%');
+        return $this->db->resultSet();
+    }
+
     // Add Tour
     public function addTour($data)
     {

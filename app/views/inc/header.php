@@ -60,6 +60,14 @@
       </nav>
       
       <div class="header-actions">
+        <div class="search-container-small" id="searchOverlay">
+          <form action="<?php echo URLROOT; ?>/tours/search" method="GET" class="search-form-small">
+            <input type="text" name="q" placeholder="Search..." class="search-input-small" id="searchInput" autocomplete="off" />
+            <button type="submit" class="search-submit-small" aria-label="Submit Search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </form>
+        </div>
         <button class="search-toggle" aria-label="Search">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
@@ -68,4 +76,5 @@
         </button>
       </div>
     </div>
+    
   </header>

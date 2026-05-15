@@ -38,4 +38,24 @@ class ToursController extends Controller {
         
         $this->view('tours/show', $data);
     }
+
+    public function search() {
+        $keyword = isset($_GET['q']) ? trim($_GET['q']) : '';
+        
+        $tourModel = $this->model('Tour');
+        $tours = [];
+        
+        if (!empty($keyword)) {
+            $tours = $tourModel->searchTours($keyword);
+        }
+        
+        $data = [
+            'title' => 'Search Results | The Ceylon Trek',
+            'description' => 'Search results for: ' . htmlspecialchars($keyword),
+            'keyword' => $keyword,
+            'tours' => $tours
+        ];
+        
+        $this->view('tours/search', $data);
+    }
 }
