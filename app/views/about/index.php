@@ -7,7 +7,7 @@
       <?php if (!empty($data['images'])): ?>
         <?php foreach ($data['images'] as $index => $image): ?>
           <div class="slide <?php echo $index === 0 ? 'active' : ''; ?>"
-            style="background-image: url('<?php echo $image->image_url; ?>'); background-size: cover; background-position: center; width: 100%; height: 100%;">
+            style="background-image: url('<?php echo asset_url($image->image_url); ?>'); background-size: cover; background-position: center; width: 100%; height: 100%;">
           </div>
         <?php endforeach; ?>
       <?php else: ?>

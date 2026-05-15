@@ -29,8 +29,8 @@
         <div class="grid">
             <?php foreach($data['images'] as $image) : ?>
             <div class="grid-item">
-                <img src="<?php echo $image->image_url; ?>" alt="Gallery Image">
-                <p style="font-size: 12px; color: #666; margin-top: 5px; word-break: break-all;"><?php echo $image->image_url; ?></p>
+                <img src="<?php echo asset_url($image->image_url); ?>" alt="Gallery Image">
+                <p style="font-size: 12px; color: #666; margin-top: 5px; word-break: break-all;"><?php echo asset_url($image->image_url); ?></p>
             </div>
             <?php endforeach; ?>
             <?php if(empty($data['images'])): ?>

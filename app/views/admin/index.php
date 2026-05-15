@@ -42,7 +42,7 @@
             <tbody>
                 <?php foreach($data['tours'] as $tour) : ?>
                 <tr>
-                    <td><img src="<?php echo $tour->image_url; ?>" alt="Tour Image"></td>
+                    <td><img src="<?php echo asset_url($tour->image_url); ?>" alt="Tour Image"></td>
                     <td><?php echo $tour->title; ?></td>
                     <td><?php echo $tour->location; ?></td>
                     <td>$<?php echo $tour->price; ?></td>
