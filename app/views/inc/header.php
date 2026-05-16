@@ -64,7 +64,7 @@
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+94-77-756-2425",
+      "telephone": "+94 753949483",
       "contactType": "customer service",
       "availableLanguage": ["English", "Sinhala"]
     },

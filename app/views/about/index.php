@@ -48,8 +48,8 @@
         </div>
         <div class="about-content reveal delay-1 text-center" style="text-align: center;">
           <span class="badge badge-light" style="background: #e8f5e9; color: #4CAF50; padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 1rem;">Who We Are</span>
-          <h2 class="section-title mb-4" style="font-size: 2.5rem;">Lanka Trek | Sri Lanka's Best Trekking and Hiking Tours</h2>
-          <p class="text-body mb-3" style="text-align: center;">Lanka Trek is a premier trekking company in Sri Lanka, dedicated to offering exceptional hiking and trekking experiences to both local and international travelers. With over eight years of industry expertise, we specialize in revealing the untouched beauty of Sri Lanka's natural landscapes, particularly the UNESCO World Heritage-listed Knuckles Mountain Range. Our professional and friendly guides ensure that every trek is safe, enjoyable, and unforgettable.</p>
+          <h2 class="section-title mb-4" style="font-size: 2.5rem;">CeylonTrek | Sri Lanka's Best Trekking and Hiking Tours</h2>
+          <p class="text-body mb-3" style="text-align: center;">CeylonTrek is a premier trekking company in Sri Lanka, dedicated to offering exceptional hiking and trekking experiences to both local and international travelers. With over eight years of industry expertise, we specialize in revealing the untouched beauty of Sri Lanka's natural landscapes, particularly the UNESCO World Heritage-listed Knuckles Mountain Range. Our professional and friendly guides ensure that every trek is safe, enjoyable, and unforgettable.</p>
           <p class="text-body" style="text-align: center;">We pride ourselves on promoting sustainable hiking packages at fair prices. You can unearth hidden trails and scenic views that most travelers never see. Our goal is to connect people with nature and showcase Sri Lanka's undiscovered beauty.</p>
         </div>
       </div>
