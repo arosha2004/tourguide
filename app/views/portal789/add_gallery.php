@@ -19,13 +19,13 @@
 <body>
     <div class="container">
         <h1>Add Gallery Image</h1>
-        <form action="<?php echo URLROOT; ?>/admin/addGalleryImage" method="POST" enctype="multipart/form-data">
+        <form action="<?php echo URLROOT; ?>/portal789/addGalleryImage" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="image">Select Image</label>
                 <input type="file" name="image" id="image" required>
             </div>
             <button type="submit" class="btn">Upload Image</button>
-            <a href="<?php echo URLROOT; ?>/admin/gallery" class="btn btn-secondary">Cancel</a>
+            <a href="<?php echo URLROOT; ?>/portal789/gallery" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </body>

@@ -22,7 +22,7 @@
         <?php if(!empty($data['error'])) : ?>
             <div class="error"><?php echo $data['error']; ?></div>
         <?php endif; ?>
-        <form action="<?php echo URLROOT; ?>/admin/login" method="POST">
+        <form action="<?php echo URLROOT; ?>/portal789/login" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" required>

@@ -386,7 +386,7 @@
 <body>
     <header class="admin-header">
         <div class="brand">🌿 The Ceylon Trek — Admin</div>
-        <a href="<?php echo URLROOT; ?>/admin" class="back-link">
+        <a href="<?php echo URLROOT; ?>/portal789" class="back-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
@@ -400,7 +400,7 @@
             <p>Fill in the details below to create a new tour listing</p>
         </div>
 
-        <form action="<?php echo URLROOT; ?>/admin/add" method="POST" enctype="multipart/form-data" id="addTourForm">
+        <form action="<?php echo URLROOT; ?>/portal789/add" method="POST" enctype="multipart/form-data" id="addTourForm">
 
             <!-- Basic Info -->
             <div class="form-card">
@@ -488,7 +488,7 @@
 
             <!-- Actions -->
             <div class="form-actions">
-                <a href="<?php echo URLROOT; ?>/admin" class="btn-cancel">Cancel</a>
+                <a href="<?php echo URLROOT; ?>/portal789" class="btn-cancel">Cancel</a>
                 <button type="submit" class="btn-submit" id="submitBtn" onclick="this.classList.add('loading'); this.textContent = 'Publishing...';">
                     🚀 Publish Tour
                 </button>

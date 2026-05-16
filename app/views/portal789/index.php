@@ -22,10 +22,10 @@
         <div class="header">
             <h1>Manage Tours</h1>
             <div>
-                <a href="<?php echo URLROOT; ?>/admin/add" class="btn">Add New Tour</a>
-                <a href="<?php echo URLROOT; ?>/admin/gallery" class="btn" style="background:#28a745;">Manage Gallery</a>
+                <a href="<?php echo URLROOT; ?>/portal789/add" class="btn">Add New Tour</a>
+                <a href="<?php echo URLROOT; ?>/portal789/gallery" class="btn" style="background:#28a745;">Manage Gallery</a>
                 <a href="<?php echo URLROOT; ?>" class="btn" style="background:#6c757d;">Back to Site</a>
-                <a href="<?php echo URLROOT; ?>/admin/logout" class="btn" style="background:#dc3545; margin-left: 10px;">Logout</a>
+                <a href="<?php echo URLROOT; ?>/portal789/logout" class="btn" style="background:#dc3545; margin-left: 10px;">Logout</a>
             </div>
         </div>
         
@@ -51,8 +51,8 @@
                     <td><?php echo $tour->badge; ?></td>
                     <td><?php echo $tour->duration; ?></td>
                     <td>
-                        <a href="<?php echo URLROOT; ?>/admin/edit/<?php echo $tour->id; ?>" class="btn" style="padding: 5px 10px; margin-bottom: 5px;">Edit</a>
-                        <form action="<?php echo URLROOT; ?>/admin/delete/<?php echo $tour->id; ?>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this tour and all its images?');">
+                        <a href="<?php echo URLROOT; ?>/portal789/edit/<?php echo $tour->id; ?>" class="btn" style="padding: 5px 10px; margin-bottom: 5px;">Edit</a>
+                        <form action="<?php echo URLROOT; ?>/portal789/delete/<?php echo $tour->id; ?>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this tour and all its images?');">
                             <button type="submit" class="btn" style="background:#dc3545; padding: 5px 10px; border:none; cursor:pointer;">Delete</button>
                         </form>
                     </td>

@@ -1,5 +1,5 @@
 <?php
-class AdminController extends Controller {
+class Portal789Controller extends Controller {
     private $tourModel;
     private $galleryModel;
 
@@ -20,7 +20,7 @@ class AdminController extends Controller {
 
     private function requireAuth() {
         if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-            header('Location: ' . URLROOT . '/admin/login');
+            header('Location: ' . URLROOT . '/portal789/login');
             exit;
         }
     }
@@ -28,7 +28,7 @@ class AdminController extends Controller {
     public function login() {
         // If already logged in, redirect to admin index
         if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-            header('Location: ' . URLROOT . '/admin');
+            header('Location: ' . URLROOT . '/portal789');
             exit;
         }
 
@@ -43,20 +43,20 @@ class AdminController extends Controller {
 
             if ($username === ADMIN_USER && $password === ADMIN_PASS) {
                 $_SESSION['admin_logged_in'] = true;
-                header('Location: ' . URLROOT . '/admin');
+                header('Location: ' . URLROOT . '/portal789');
                 exit;
             } else {
                 $data['error'] = 'Invalid username or password.';
             }
         }
 
-        $this->view('admin/login', $data);
+        $this->view('portal789/login', $data);
     }
 
     public function logout() {
         unset($_SESSION['admin_logged_in']);
         session_destroy();
-        header('Location: ' . URLROOT . '/admin/login');
+        header('Location: ' . URLROOT . '/portal789/login');
         exit;
     }
 
@@ -66,7 +66,7 @@ class AdminController extends Controller {
             'title' => 'Admin Panel - Manage Tours',
             'tours' => $tours
         ];
-        $this->view('admin/index', $data);
+        $this->view('portal789/index', $data);
     }
 
     public function add() {
@@ -116,7 +116,7 @@ class AdminController extends Controller {
                         }
                     }
                 }
-                header('Location: ' . URLROOT . '/admin');
+                header('Location: ' . URLROOT . '/portal789');
             } else {
                 die('Something went wrong while adding the tour.');
             }
@@ -127,7 +127,7 @@ class AdminController extends Controller {
                 'location_err' => '',
                 'price_err'    => '',
             ];
-            $this->view('admin/add', $data);
+            $this->view('portal789/add', $data);
         }
     }
 
@@ -137,7 +137,7 @@ class AdminController extends Controller {
             'title'  => 'Admin Panel - Manage Gallery',
             'images' => $images
         ];
-        $this->view('admin/gallery', $data);
+        $this->view('portal789/gallery', $data);
     }
 
     public function addGalleryImage() {
@@ -160,7 +160,7 @@ class AdminController extends Controller {
             if (!empty($image_url)) {
                 $data = ['image_url' => $image_url];
                 if ($this->galleryModel->addImage($data)) {
-                    header('Location: ' . URLROOT . '/admin/gallery');
+                    header('Location: ' . URLROOT . '/portal789/gallery');
                 } else {
                     die('Something went wrong');
                 }
@@ -169,7 +169,7 @@ class AdminController extends Controller {
             }
         } else {
             $data = ['title' => 'Add Gallery Image'];
-            $this->view('admin/add_gallery', $data);
+            $this->view('portal789/add_gallery', $data);
         }
     }
     public function edit($id) {
@@ -211,14 +211,14 @@ class AdminController extends Controller {
             ];
 
             if ($this->tourModel->updateTour($data)) {
-                header('Location: ' . URLROOT . '/admin');
+                header('Location: ' . URLROOT . '/portal789');
             } else {
                 die('Something went wrong while updating the tour.');
             }
         } else {
             $tour = $this->tourModel->getTourById($id);
             if (!$tour) {
-                header('Location: ' . URLROOT . '/admin');
+                header('Location: ' . URLROOT . '/portal789');
                 exit;
             }
 
@@ -226,7 +226,7 @@ class AdminController extends Controller {
                 'title_page' => 'Edit Tour',
                 'tour'       => $tour
             ];
-            $this->view('admin/edit', $data);
+            $this->view('portal789/edit', $data);
         }
     }
 
@@ -256,15 +256,15 @@ class AdminController extends Controller {
                 // Delete from db
                 $this->tourModel->deleteTourImages($id);
                 if ($this->tourModel->deleteTour($id)) {
-                    header('Location: ' . URLROOT . '/admin');
+                    header('Location: ' . URLROOT . '/portal789');
                 } else {
                     die('Something went wrong deleting the tour.');
                 }
             } else {
-                header('Location: ' . URLROOT . '/admin');
+                header('Location: ' . URLROOT . '/portal789');
             }
         } else {
-            header('Location: ' . URLROOT . '/admin');
+            header('Location: ' . URLROOT . '/portal789');
         }
     }
 
@@ -280,15 +280,15 @@ class AdminController extends Controller {
                 }
                 
                 if ($this->galleryModel->deleteImage($id)) {
-                    header('Location: ' . URLROOT . '/admin/gallery');
+                    header('Location: ' . URLROOT . '/portal789/gallery');
                 } else {
                     die('Something went wrong deleting gallery image.');
                 }
             } else {
-                header('Location: ' . URLROOT . '/admin/gallery');
+                header('Location: ' . URLROOT . '/portal789/gallery');
             }
         } else {
-            header('Location: ' . URLROOT . '/admin/gallery');
+            header('Location: ' . URLROOT . '/portal789/gallery');
         }
     }
 }

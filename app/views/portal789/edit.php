@@ -23,9 +23,9 @@
 <body>
     <div class="container">
         <h1>Edit Tour: <?php echo htmlspecialchars($data['tour']->title); ?></h1>
-        <a href="<?php echo URLROOT; ?>/admin" class="btn" style="background:#6c757d;">Back to Tours</a>
+        <a href="<?php echo URLROOT; ?>/portal789" class="btn" style="background:#6c757d;">Back to Tours</a>
         
-        <form action="<?php echo URLROOT; ?>/admin/edit/<?php echo $data['tour']->id; ?>" method="POST" enctype="multipart/form-data">
+        <form action="<?php echo URLROOT; ?>/portal789/edit/<?php echo $data['tour']->id; ?>" method="POST" enctype="multipart/form-data">
             
             <div class="form-group">
                 <label for="title">Title</label>
