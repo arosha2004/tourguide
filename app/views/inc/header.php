@@ -53,6 +53,9 @@
     $hide_header_top = ($base_page == 'home' || $base_page == 'about' || $base_page == '');
   ?>
   <!-- Navigation -->
+  <?php if ($hide_header_top): ?>
+    <div class="header-hover-trigger"></div>
+  <?php endif; ?>
   <header class="header <?php echo !$is_home ? 'header-subpage' : ''; ?> <?php echo $hide_header_top ? 'header-hidden-top' : ''; ?>" id="header">
     <div class="container header-inner">
       <a href="#home" class="brand">
