@@ -48,9 +48,12 @@
     $current_page = isset($_GET['url']) ? rtrim($_GET['url'], '/') : 'home';
     $url_parts = explode('/', $current_page);
     $base_page = strtolower($url_parts[0]);
+    
+    // Check if header should be hidden at the top
+    $hide_header_top = ($base_page == 'home' || $base_page == 'about' || $base_page == '');
   ?>
   <!-- Navigation -->
-  <header class="header <?php echo !$is_home ? 'header-subpage' : ''; ?>" id="header">
+  <header class="header <?php echo !$is_home ? 'header-subpage' : ''; ?> <?php echo $hide_header_top ? 'header-hidden-top' : ''; ?>" id="header">
     <div class="container header-inner">
       <a href="#home" class="brand">
         <img src="<?php echo URLROOT; ?>/public/logo.png" alt="The Ceylon Trek Logo" class="brand-logo" />

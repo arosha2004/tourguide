@@ -210,6 +210,19 @@ ul {
   padding: 1.5rem 0;
 }
 
+/* Hide header at the top for Home and About pages */
+.header.header-hidden-top:not(.scrolled) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+}
+
+.header.header-hidden-top.scrolled {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 .header.scrolled {
   padding: 0.75rem 0;
   background: var(--glass-bg);

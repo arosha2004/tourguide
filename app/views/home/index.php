@@ -5,13 +5,31 @@
   <section class="hero" id="home">
     <div class="hero-slider" id="heroSlider">
       <div class="slide active"
-        style="background-image: url('<?php echo URLROOT; ?>/public/uploads/knuckles/WhatsApp%20Image%202026-05-08%20at%2006.10.11.jpeg');">
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/WhatsApp%20Image%202026-05-08%20at%2006.41.41.jpeg');">
       </div>
       <div class="slide"
-        style="background-image: url('<?php echo URLROOT; ?>/public/uploads/knuckles/WhatsApp%20Image%202026-05-08%20at%2006.10.16.jpeg');">
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/WhatsApp%20Image%202026-05-08%20at%2006.43.14.jpeg');">
       </div>
       <div class="slide"
-        style="background-image: url('<?php echo URLROOT; ?>/public/uploads/knuckles/WhatsApp%20Image%202026-05-08%20at%2006.10.28.jpeg');">
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/brian-kyed-8NpelZe-EzM-unsplash.jpg');">
+      </div>
+      <div class="slide"
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/chathura-anuradha-subasinghe-40uQmE9Zq8g-unsplash.jpg');">
+      </div>
+      <div class="slide"
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/hendrik-cornelissen-jpTT_SAU034-unsplash.jpg');">
+      </div>
+      <div class="slide"
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/jerry-kavan-i9eaAR4dWi8-unsplash.jpg');">
+      </div>
+      <div class="slide"
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/tom-nicholson-PTw2xsseQxM-unsplash.jpg');">
+      </div>
+      <div class="slide"
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/tom-paisley-v2zEiziFb44-unsplash%20(1).jpg');">
+      </div>
+      <div class="slide"
+        style="background-image: url('<?php echo URLROOT; ?>/public/img/slideshow/tom-paisley-v2zEiziFb44-unsplash.jpg');">
       </div>
     </div>
 
