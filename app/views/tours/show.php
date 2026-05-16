@@ -1,8 +1,8 @@
 <?php require '../app/views/inc/header.php'; ?>
 
 <main>
-    <section class="tour-detail-section" style="padding-top: 100px;">
-        <div class="container">
+    <section class="tour-detail-section">
+        <div class="tsd-container">
 
             <!-- Hero Header -->
             <div class="tsd-header reveal">
@@ -25,117 +25,44 @@
                 </div>
             </div>
 
-            <?php
-                $has_extra_images = !empty($data['images']);
-                $extra_images = $data['images'];
-            ?>
-
-            <?php if ($has_extra_images): ?>
-            <!-- CINEMATIC IMAGE SHOWCASE - mosaic layout -->
-            <div class="tsd-mosaic reveal" id="imageMosaic">
-                <!-- Large cover = slot 0 -->
-                <div class="mosaic-main" onclick="openLightbox(0)">
-                    <img src="<?php echo asset_url($data['tour']->image_url); ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?>" loading="lazy">
-                    <div class="mosaic-overlay">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </div>
-                </div>
-
-                <!-- Side stack -->
-                <div class="mosaic-side">
-                    <?php
-                        $side_images = array_slice($extra_images, 0, 4);
-                        $remaining   = count($extra_images) - 4;
-                    ?>
-                    <?php foreach($side_images as $idx => $img): ?>
-                    <div class="mosaic-thumb" onclick="openLightbox(<?php echo $idx + 1; ?>)">
-                        <img src="<?php echo asset_url($img->image_url); ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?> tour image <?php echo $idx + 1; ?>" loading="lazy">
-                        <div class="mosaic-overlay">
-                            <?php if($idx === 3 && $remaining > 0): ?>
-                            <span class="mosaic-more">+<?php echo $remaining; ?> more</span>
-                            <?php else: ?>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
+            <!-- Full-Width Cover Image -->
+            <div class="tsd-cover reveal" onclick="openLightbox(0)">
+                <img src="<?php echo asset_url($data['tour']->image_url); ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?>" loading="lazy">
+                <div class="tsd-cover-overlay">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </div>
             </div>
 
-            <!-- Remaining images as horizontal strip -->
-            <?php if(count($extra_images) > 4): ?>
-            <div class="tsd-strip reveal">
-                <?php foreach(array_slice($extra_images, 4) as $sidx => $simg): ?>
-                <div class="strip-item" onclick="openLightbox(<?php echo $sidx + 5; ?>)">
-                    <img src="<?php echo asset_url($simg->image_url); ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?> tour image <?php echo $sidx + 5; ?>" loading="lazy">
-                    <div class="mosaic-overlay">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-            </div>
-            <?php endif; ?>
-
-            <?php else: ?>
-            <!-- Only cover image -->
-            <div class="tsd-single-image reveal">
-                <img src="<?php echo asset_url($data['tour']->image_url); ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?>" onclick="openLightbox(0)">
-                <div class="mosaic-overlay">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </div>
-            </div>
-            <?php endif; ?>
-
-            <!-- Description -->
+            <!-- Overview -->
             <div class="tsd-body reveal">
                 <div class="tsd-overview">
-                    <h2 class="tsd-section-title">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Overview
-                    </h2>
+                    <h2 class="tsd-section-title">Overview</h2>
                     <p class="tsd-description">
                         <?php echo nl2br(htmlspecialchars($data['tour']->description ?? 'Join us on this amazing adventure to explore ' . $data['tour']->location . '. Experience nature like never before with guided treks and beautiful landscapes.')); ?>
                     </p>
                 </div>
 
-                <!-- Highlights -->
-                <div class="tsd-highlights">
-                    <div class="highlight-card">
-                        <div class="highlight-icon">📍</div>
-                        <div>
-                            <div class="highlight-label">Location</div>
-                            <div class="highlight-value"><?php echo htmlspecialchars($data['tour']->location); ?></div>
+                <!-- Gallery Grid (extra images from admin panel) -->
+                <?php if (!empty($data['images'])): ?>
+                <div class="tsd-gallery-section">
+                    <h2 class="tsd-section-title">Gallery</h2>
+                    <div class="tsd-gallery-grid">
+                        <?php foreach ($data['images'] as $idx => $img): ?>
+                        <div class="gallery-item" onclick="openLightbox(<?php echo $idx + 1; ?>)">
+                            <img src="<?php echo asset_url($img->image_url); ?>" alt="<?php echo htmlspecialchars($data['tour']->title); ?> – photo <?php echo $idx + 1; ?>" loading="lazy">
+                            <div class="gallery-item-overlay">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            </div>
                         </div>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">⏱️</div>
-                        <div>
-                            <div class="highlight-label">Duration</div>
-                            <div class="highlight-value"><?php echo htmlspecialchars($data['tour']->duration); ?></div>
-                        </div>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">💰</div>
-                        <div>
-                            <div class="highlight-label">Starting From</div>
-                            <div class="highlight-value" style="color: var(--primary);">$<?php echo number_format($data['tour']->price, 2); ?></div>
-                        </div>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🏷️</div>
-                        <div>
-                            <div class="highlight-label">Category</div>
-                            <div class="highlight-value"><?php echo htmlspecialchars($data['tour']->badge); ?></div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+                <?php endif; ?>
 
-                <!-- CTA -->
+                <!-- CTA Buttons -->
                 <div class="tsd-cta">
-                    <button onclick="openBookingModal()" class="btn btn-primary btn-lg tsd-book-btn">
-                        Book Now
-                    </button>
-                    <a href="<?php echo URLROOT; ?>" class="btn btn-outline btn-lg">← Back to Home</a>
+                    <button onclick="openBookingModal()" class="btn btn-primary btn-lg tsd-book-btn">Book This Tour</button>
+                    <a href="<?php echo URLROOT; ?>" class="btn btn-outline btn-lg">Back to Home</a>
                 </div>
             </div>
 
@@ -186,20 +113,31 @@
 </div>
 
 <style>
-/* ===== TOUR DETAIL STYLES ===== */
-.tour-detail-section { padding-bottom: 5rem; }
+/* ===== TOUR DETAIL — REFERENCE LAYOUT ===== */
+.tour-detail-section {
+    padding-top: 100px;
+    padding-bottom: 5rem;
+    background: #fff;
+}
 
+.tsd-container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* Header */
 .tsd-header {
     text-align: center;
     padding: 2rem 0 1.5rem;
 }
 
 .tsd-title {
-    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 800;
-    line-height: 1.15;
+    line-height: 1.2;
     margin: 0.75rem 0 1rem;
-    color: var(--dark);
+    color: #1a1a2e;
     letter-spacing: -0.5px;
 }
 
@@ -220,202 +158,110 @@
 }
 
 .tsd-meta-sep { color: #ccc; }
-
 .tsd-meta-price { color: var(--primary); font-weight: 600; font-size: 1rem; }
 .tsd-meta-price strong { font-size: 1.15rem; }
 
-/* MOSAIC IMAGE LAYOUT */
-.tsd-mosaic {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    gap: 0.6rem;
-    margin: 2rem 0 0.6rem;
-    border-radius: 20px;
-    overflow: hidden;
-    max-height: 520px;
-}
-
-.mosaic-main {
+/* Full-width cover image */
+.tsd-cover {
     position: relative;
-    cursor: pointer;
+    border-radius: 16px;
     overflow: hidden;
+    margin: 1.5rem 0 2.5rem;
+    cursor: pointer;
+    aspect-ratio: 16/7;
+    background: #eee;
 }
 
-.mosaic-main img {
+.tsd-cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.5s ease;
-    display: block;
 }
 
-.mosaic-main:hover img { transform: scale(1.04); }
+.tsd-cover:hover img { transform: scale(1.02); }
 
-.mosaic-side {
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 0.6rem;
-}
-
-.mosaic-thumb {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 4px;
-}
-
-.mosaic-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-    display: block;
-}
-
-.mosaic-thumb:hover img { transform: scale(1.06); }
-
-.mosaic-overlay {
+.tsd-cover-overlay {
     position: absolute;
     inset: 0;
     background: rgba(0,0,0,0);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s;
     opacity: 0;
+    transition: background 0.3s, opacity 0.3s;
 }
 
-.mosaic-main:hover .mosaic-overlay,
-.mosaic-thumb:hover .mosaic-overlay { background: rgba(0,0,0,0.3); opacity: 1; }
-
-.mosaic-more {
-    background: rgba(0,0,0,0.65);
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 700;
-    padding: 0.35rem 0.75rem;
-    border-radius: 8px;
-    letter-spacing: -0.3px;
+.tsd-cover:hover .tsd-cover-overlay {
+    background: rgba(0,0,0,0.2);
+    opacity: 1;
 }
 
-/* Horizontal strip for > 4 extra images */
-.tsd-strip {
-    display: flex;
-    gap: 0.6rem;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) transparent;
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.6rem;
-}
-
-.tsd-strip::-webkit-scrollbar { height: 4px; }
-.tsd-strip::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
-
-.strip-item {
-    position: relative;
-    flex: 0 0 180px;
-    height: 120px;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.strip-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s;
-}
-
-.strip-item:hover img { transform: scale(1.08); }
-.strip-item:hover .mosaic-overlay { background: rgba(0,0,0,0.3); opacity: 1; }
-
-/* Single image fallback */
-.tsd-single-image {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    max-height: 520px;
-    margin: 2rem 0;
-    cursor: pointer;
-}
-
-.tsd-single-image img {
-    width: 100%;
-    max-height: 520px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s;
-}
-
-.tsd-single-image:hover img { transform: scale(1.02); }
-.tsd-single-image:hover .mosaic-overlay { opacity: 1; background: rgba(0,0,0,0.2); }
-
-/* Body section */
+/* Body / Overview */
 .tsd-body {
-    margin-top: 2.5rem;
-    max-width: 860px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 0;
 }
 
 .tsd-section-title {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: var(--dark);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1rem;
+    color: #1a1a2e;
+    margin-bottom: 0.85rem;
+    margin-top: 0;
 }
 
 .tsd-description {
-    font-size: 1.05rem;
-    line-height: 1.85;
+    font-size: 1rem;
+    line-height: 1.8;
     color: #555;
     margin-bottom: 2.5rem;
 }
 
-/* Highlights */
-.tsd-highlights {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
+/* Gallery grid */
+.tsd-gallery-section {
     margin-bottom: 2.5rem;
 }
 
-.highlight-card {
+.tsd-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+    background: #eee;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img { transform: scale(1.06); }
+
+.gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
     display: flex;
     align-items: center;
-    gap: 0.9rem;
-    padding: 1.1rem 1.25rem;
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 14px;
-    transition: box-shadow 0.2s, transform 0.2s;
+    justify-content: center;
+    opacity: 0;
+    transition: background 0.3s, opacity 0.3s;
 }
 
-.highlight-card:hover {
-    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-    transform: translateY(-2px);
-}
-
-.highlight-icon { font-size: 1.5rem; line-height: 1; }
-
-.highlight-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: #999;
-    margin-bottom: 0.2rem;
-}
-
-.highlight-value {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--dark);
+.gallery-item:hover .gallery-item-overlay {
+    background: rgba(0,0,0,0.3);
+    opacity: 1;
 }
 
 /* CTA */
@@ -424,6 +270,8 @@
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
 }
 
 .tsd-book-btn {
@@ -446,7 +294,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0,0,0,0.95);
     z-index: 9999;
     align-items: center;
     justify-content: center;
@@ -527,12 +375,12 @@
 .lb-next { right: 1rem; }
 .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.2); }
 
-/* BOOKING MODAL STYLES */
+/* BOOKING MODAL */
 .booking-modal-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0,0,0,0.6);
     backdrop-filter: blur(4px);
     z-index: 9999;
     align-items: center;
@@ -575,7 +423,7 @@
 
 .bm-title {
     margin-top: 0;
-    color: var(--dark);
+    color: #1a1a2e;
     font-weight: 800;
     font-size: 1.5rem;
     margin-bottom: 1.8rem;
@@ -599,6 +447,7 @@
     outline: none;
     font-size: 1rem;
     transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
 }
 
 .bm-input:focus {
@@ -623,21 +472,19 @@
 @keyframes zoomIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .tsd-mosaic {
-        grid-template-columns: 1fr;
-        max-height: none;
+@media (max-width: 600px) {
+    .tsd-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .mosaic-main { height: 260px; }
-    .mosaic-side { grid-template-rows: none; grid-template-columns: repeat(4, 1fr); height: 90px; }
     .tsd-cta { flex-direction: column; align-items: stretch; }
     .lb-prev { left: 0.25rem; }
     .lb-next { right: 0.25rem; }
+    .bm-row { grid-template-columns: 1fr; }
 }
 </style>
 
 <script>
-// Build all images array for lightbox
+// Build all images array for lightbox: cover first, then extra gallery images
 const allImages = [
     '<?php echo addslashes(asset_url($data['tour']->image_url)); ?>'
     <?php foreach($data['images'] as $img): ?>
@@ -667,13 +514,12 @@ function shiftLightbox(dir) {
 function updateLightbox() {
     const img = document.getElementById('lbImg');
     img.style.animation = 'none';
-    img.offsetHeight; // reflow
+    img.offsetHeight;
     img.style.animation = 'zoomIn 0.25s ease';
     img.src = allImages[currentLbIndex];
     document.getElementById('lbCounter').textContent = (currentLbIndex + 1) + ' / ' + allImages.length;
 }
 
-// Booking Modal Functions
 function openBookingModal() {
     document.getElementById('bookingModal').classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -686,33 +532,32 @@ function closeBookingModal() {
 
 function submitBooking(e) {
     e.preventDefault();
-    const name = document.getElementById('bmName').value;
-    const contact = document.getElementById('bmContact').value;
-    const travelers = document.getElementById('bmTravelers').value;
-    const date = document.getElementById('bmDate').value;
-    const tourTitle = "<?php echo addslashes($data['tour']->title); ?>";
-    
+    const name     = document.getElementById('bmName').value;
+    const contact  = document.getElementById('bmContact').value;
+    const travelers= document.getElementById('bmTravelers').value;
+    const date     = document.getElementById('bmDate').value;
+    const tourTitle= "<?php echo addslashes($data['tour']->title); ?>";
+
     let text = `Hi! I'm interested in booking the *${tourTitle}* tour.\n\n`;
     text += `*Name:* ${name}\n`;
     text += `*Contact Number:* ${contact}\n`;
     text += `*Travelers:* ${travelers}\n`;
     text += `*Preferred Date:* ${date}\n\n`;
     text += `Please let me know the availability and next steps.`;
-    
+
     const waUrl = `https://wa.me/94753949483?text=${encodeURIComponent(text)}`;
     window.open(waUrl, '_blank');
     closeBookingModal();
 }
 
-// Keyboard navigation
 document.addEventListener('keydown', function(e) {
     const lb = document.getElementById('lightbox');
     const bm = document.getElementById('bookingModal');
-    
+
     if (lb.classList.contains('active')) {
-        if (e.key === 'ArrowLeft') shiftLightbox(-1);
+        if (e.key === 'ArrowLeft')  shiftLightbox(-1);
         if (e.key === 'ArrowRight') shiftLightbox(1);
-        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'Escape')     closeLightbox();
     } else if (bm && bm.classList.contains('active')) {
         if (e.key === 'Escape') closeBookingModal();
     }
