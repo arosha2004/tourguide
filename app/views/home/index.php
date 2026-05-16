@@ -173,9 +173,8 @@
               <line x1="2" y1="11" x2="22" y2="11"></line>
             </svg>
           </div>
-          <h3 class="service-title">RV Caravan</h3>
-          <p class="service-desc">Explore Sri Lanka in comfort with our RV trailers, ideal for adventurers wanting home
-            amenities.</p>
+          <h3 class="service-title">Private Transport</h3>
+          <p class="service-desc">We provide comfortable and reliable transport solutions, including vans and 4x4 vehicles, to any destination in Sri Lanka.</p>
         </div>
       </div>
     </div>
