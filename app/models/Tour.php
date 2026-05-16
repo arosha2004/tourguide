@@ -70,4 +70,40 @@ class Tour
         $this->db->bind(':sort_order', $sort_order);
         return $this->db->execute();
     }
+    // Update Tour
+    public function updateTour($data)
+    {
+        if (!empty($data['image_url'])) {
+            $this->db->query('UPDATE tours SET title = :title, location = :location, price = :price, badge = :badge, duration = :duration, description = :description, image_url = :image_url WHERE id = :id');
+            $this->db->bind(':image_url', $data['image_url']);
+        } else {
+            $this->db->query('UPDATE tours SET title = :title, location = :location, price = :price, badge = :badge, duration = :duration, description = :description WHERE id = :id');
+        }
+
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':location', $data['location']);
+        $this->db->bind(':price', $data['price']);
+        $this->db->bind(':badge', $data['badge']);
+        $this->db->bind(':duration', $data['duration']);
+        $this->db->bind(':description', $data['description']);
+
+        return $this->db->execute();
+    }
+
+    // Delete Tour
+    public function deleteTour($id)
+    {
+        $this->db->query('DELETE FROM tours WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+
+    // Delete Tour Images (from extra gallery)
+    public function deleteTourImages($tour_id)
+    {
+        $this->db->query('DELETE FROM tour_images WHERE tour_id = :id');
+        $this->db->bind(':id', $tour_id);
+        return $this->db->execute();
+    }
 }

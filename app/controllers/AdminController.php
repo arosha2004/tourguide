@@ -120,4 +120,123 @@ class AdminController extends Controller {
             $this->view('admin/add_gallery', $data);
         }
     }
+    public function edit($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $tour = $this->tourModel->getTourById($id);
+            $image_url = $tour->image_url; // Keep old image by default
+
+            // Handle cover image upload if a new one is provided
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+                $upload_dir = dirname(dirname(dirname(__FILE__))) . "/public/uploads/tours/";
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0777, true);
+                }
+                $ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+                $file_name = time() . '_' . uniqid() . '.' . $ext;
+                $target_file = $upload_dir . $file_name;
+                
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    // Delete old image if it exists and isn't a default or external url
+                    if (!empty($tour->image_url) && strpos($tour->image_url, '/public/uploads/') === 0) {
+                        $old_file = dirname(dirname(dirname(__FILE__))) . $tour->image_url;
+                        if (file_exists($old_file)) {
+                            unlink($old_file);
+                        }
+                    }
+                    $image_url = '/public/uploads/tours/' . $file_name;
+                }
+            }
+
+            $data = [
+                'id'          => $id,
+                'title'       => trim($_POST['title']),
+                'location'    => trim($_POST['location']),
+                'price'       => trim($_POST['price']),
+                'badge'       => trim($_POST['badge']),
+                'duration'    => trim($_POST['duration']),
+                'description' => trim($_POST['description']),
+                'image_url'   => $image_url
+            ];
+
+            if ($this->tourModel->updateTour($data)) {
+                header('Location: ' . URLROOT . '/admin');
+            } else {
+                die('Something went wrong while updating the tour.');
+            }
+        } else {
+            $tour = $this->tourModel->getTourById($id);
+            if (!$tour) {
+                header('Location: ' . URLROOT . '/admin');
+                exit;
+            }
+
+            $data = [
+                'title_page' => 'Edit Tour',
+                'tour'       => $tour
+            ];
+            $this->view('admin/edit', $data);
+        }
+    }
+
+    public function delete($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $tour = $this->tourModel->getTourById($id);
+            if ($tour) {
+                // Delete main image
+                if (!empty($tour->image_url) && strpos($tour->image_url, '/public/uploads/') === 0) {
+                    $old_file = dirname(dirname(dirname(__FILE__))) . $tour->image_url;
+                    if (file_exists($old_file)) {
+                        unlink($old_file);
+                    }
+                }
+
+                // Delete extra images
+                $images = $this->tourModel->getTourImages($id);
+                foreach ($images as $img) {
+                    if (!empty($img->image_url) && strpos($img->image_url, '/public/uploads/') === 0) {
+                        $extra_file = dirname(dirname(dirname(__FILE__))) . $img->image_url;
+                        if (file_exists($extra_file)) {
+                            unlink($extra_file);
+                        }
+                    }
+                }
+
+                // Delete from db
+                $this->tourModel->deleteTourImages($id);
+                if ($this->tourModel->deleteTour($id)) {
+                    header('Location: ' . URLROOT . '/admin');
+                } else {
+                    die('Something went wrong deleting the tour.');
+                }
+            } else {
+                header('Location: ' . URLROOT . '/admin');
+            }
+        } else {
+            header('Location: ' . URLROOT . '/admin');
+        }
+    }
+
+    public function deleteGalleryImage($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $image = $this->galleryModel->getImageById($id);
+            if ($image) {
+                if (!empty($image->image_url) && strpos($image->image_url, '/public/uploads/') === 0) {
+                    $file_path = dirname(dirname(dirname(__FILE__))) . $image->image_url;
+                    if (file_exists($file_path)) {
+                        unlink($file_path);
+                    }
+                }
+                
+                if ($this->galleryModel->deleteImage($id)) {
+                    header('Location: ' . URLROOT . '/admin/gallery');
+                } else {
+                    die('Something went wrong deleting gallery image.');
+                }
+            } else {
+                header('Location: ' . URLROOT . '/admin/gallery');
+            }
+        } else {
+            header('Location: ' . URLROOT . '/admin/gallery');
+        }
+    }
 }

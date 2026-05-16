@@ -37,6 +37,7 @@
                     <th>Price</th>
                     <th>Badge</th>
                     <th>Duration</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,11 +49,17 @@
                     <td>$<?php echo $tour->price; ?></td>
                     <td><?php echo $tour->badge; ?></td>
                     <td><?php echo $tour->duration; ?></td>
+                    <td>
+                        <a href="<?php echo URLROOT; ?>/admin/edit/<?php echo $tour->id; ?>" class="btn" style="padding: 5px 10px; margin-bottom: 5px;">Edit</a>
+                        <form action="<?php echo URLROOT; ?>/admin/delete/<?php echo $tour->id; ?>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this tour and all its images?');">
+                            <button type="submit" class="btn" style="background:#dc3545; padding: 5px 10px; border:none; cursor:pointer;">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
                 <?php if(empty($data['tours'])): ?>
                 <tr>
-                    <td colspan="6" style="text-align:center;">No tours found.</td>
+                    <td colspan="7" style="text-align:center;">No tours found.</td>
                 </tr>
                 <?php endif; ?>
             </tbody>

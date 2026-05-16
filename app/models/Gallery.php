@@ -23,4 +23,22 @@ class Gallery {
             return false;
         }
     }
+    // Get Image By ID
+    public function getImageById($id) {
+        $this->db->query('SELECT * FROM gallery WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->single();
+    }
+
+    // Delete Image
+    public function deleteImage($id) {
+        $this->db->query('DELETE FROM gallery WHERE id = :id');
+        $this->db->bind(':id', $id);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

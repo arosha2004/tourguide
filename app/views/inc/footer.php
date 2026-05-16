@@ -28,12 +28,6 @@
             </svg></a>
         </div>
 
-        <div class="payment-methods" style="display: flex; gap: 0.5rem; align-items: center;">
-          <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" style="height: 24px;" />
-          <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard" style="height: 24px;" />
-          <img src="https://img.icons8.com/color/48/000000/amex.png" alt="Amex" style="height: 24px;" />
-          <img src="https://img.icons8.com/color/48/000000/maestro.png" alt="Maestro" style="height: 24px;" />
-        </div>
       </div>
 
       <!-- Quick Links -->

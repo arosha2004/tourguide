@@ -31,6 +31,9 @@
             <div class="grid-item">
                 <img src="<?php echo asset_url($image->image_url); ?>" alt="Gallery Image">
                 <p style="font-size: 12px; color: #666; margin-top: 5px; word-break: break-all;"><?php echo asset_url($image->image_url); ?></p>
+                <form action="<?php echo URLROOT; ?>/admin/deleteGalleryImage/<?php echo $image->id; ?>" method="POST" style="margin-top: 10px;" onsubmit="return confirm('Are you sure you want to delete this gallery image?');">
+                    <button type="submit" class="btn" style="background:#dc3545; padding: 5px 10px; width: 100%; border:none; cursor:pointer;">Delete Image</button>
+                </form>
             </div>
             <?php endforeach; ?>
             <?php if(empty($data['images'])): ?>
