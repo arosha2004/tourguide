@@ -10,6 +10,10 @@ define('DB_USER', 'root');        // Namecheap: cpanelusername_dbuser
 define('DB_PASS', '');            // Namecheap: your database password
 define('DB_NAME', 'tourguide');   // Namecheap: cpanelusername_dbname
 
+// Admin Panel Credentials
+define('ADMIN_USER', 'admin');
+define('ADMIN_PASS', 'password123'); // Change this in production!
+
 // App Root (absolute path to /app folder - do NOT change)
 define('APPROOT', dirname(dirname(__FILE__)));
 

@@ -4,8 +4,60 @@ class AdminController extends Controller {
     private $galleryModel;
 
     public function __construct() {
+        // Protect all admin routes except login and logout
+        $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        $urlParts = explode('/', $url);
+        $method = isset($urlParts[1]) ? strtolower($urlParts[1]) : 'index';
+
+        if ($method !== 'login' && $method !== 'logout') {
+            $this->requireAuth();
+        }
+
         $this->tourModel = $this->model('Tour');
         $this->galleryModel = $this->model('Gallery');
+    }
+
+    private function requireAuth() {
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header('Location: ' . URLROOT . '/admin/login');
+            exit;
+        }
+    }
+
+    public function login() {
+        // If already logged in, redirect to admin index
+        if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+            header('Location: ' . URLROOT . '/admin');
+            exit;
+        }
+
+        $data = [
+            'title' => 'Admin Login',
+            'error' => ''
+        ];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $username = trim($_POST['username'] ?? '');
+            $password = trim($_POST['password'] ?? '');
+
+            if ($username === ADMIN_USER && $password === ADMIN_PASS) {
+                $_SESSION['admin_logged_in'] = true;
+                header('Location: ' . URLROOT . '/admin');
+                exit;
+            } else {
+                $data['error'] = 'Invalid username or password.';
+            }
+        }
+
+        $this->view('admin/login', $data);
+    }
+
+    public function logout() {
+        unset($_SESSION['admin_logged_in']);
+        session_destroy();
+        header('Location: ' . URLROOT . '/admin/login');
+        exit;
     }
 
     public function index() {

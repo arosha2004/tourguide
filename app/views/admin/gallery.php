@@ -23,6 +23,7 @@
             <div>
                 <a href="<?php echo URLROOT; ?>/admin/addGalleryImage" class="btn">Add New Image</a>
                 <a href="<?php echo URLROOT; ?>/admin" class="btn" style="background:#6c757d;">Back to Tours</a>
+                <a href="<?php echo URLROOT; ?>/admin/logout" class="btn" style="background:#dc3545; margin-left: 10px;">Logout</a>
             </div>
         </div>
         

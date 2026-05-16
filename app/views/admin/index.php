@@ -25,6 +25,7 @@
                 <a href="<?php echo URLROOT; ?>/admin/add" class="btn">Add New Tour</a>
                 <a href="<?php echo URLROOT; ?>/admin/gallery" class="btn" style="background:#28a745;">Manage Gallery</a>
                 <a href="<?php echo URLROOT; ?>" class="btn" style="background:#6c757d;">Back to Site</a>
+                <a href="<?php echo URLROOT; ?>/admin/logout" class="btn" style="background:#dc3545; margin-left: 10px;">Logout</a>
             </div>
         </div>
         
