@@ -14,7 +14,7 @@
     
     $og_image = isset($data['og_image']) 
         ? (strpos($data['og_image'], 'http') === 0 ? $data['og_image'] : asset_url($data['og_image'])) 
-        : URLROOT . '/public/logo.png';
+        : URLROOT . '/public/logo-transparent.png';
         
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     // Canonical URL: use only scheme + host + path (strip query strings for clean canonicals)
@@ -55,7 +55,7 @@
     "@type": "TravelAgency",
     "name": "The Ceylon Trek",
     "url": "<?php echo URLROOT; ?>",
-    "logo": "<?php echo URLROOT; ?>/public/logo.png",
+    "logo": "<?php echo URLROOT; ?>/public/logo-transparent.png",
     "description": "<?php echo addslashes($description); ?>",
     "address": {
       "@type": "PostalAddress",
@@ -78,7 +78,7 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/styles.css?v=<?php echo ASSET_VER; ?>" />
-  <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/logo.png" />
+  <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/logo-transparent.png" />
 </head>
 <body>
   <?php 
@@ -100,7 +100,7 @@
   <header class="header <?php echo !$is_home ? 'header-subpage' : ''; ?> <?php echo $hide_header_top ? 'header-hidden-top' : ''; ?>" id="header">
     <div class="container header-inner">
       <a href="<?php echo URLROOT; ?>/" class="brand" aria-label="The Ceylon Trek - Home">
-        <img src="<?php echo URLROOT; ?>/public/logo.png" alt="The Ceylon Trek Logo" class="brand-logo" />
+        <img src="<?php echo URLROOT; ?>/public/logo-transparent.png" alt="The Ceylon Trek Logo" class="brand-logo" />
       </a>
       
       <nav class="nav" id="navMenu" role="navigation" aria-label="Main navigation">

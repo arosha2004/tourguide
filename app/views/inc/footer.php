@@ -3,7 +3,7 @@
     <div class="footer-grid">
       <!-- Brand & Social -->
       <div class="footer-col">
-        <img src="<?php echo URLROOT; ?>/public/logo.png" alt="The Ceylon Trek Logo" class="footer-logo"
+        <img src="<?php echo URLROOT; ?>/public/logo-transparent.png" alt="The Ceylon Trek Logo" class="footer-logo"
           style="height: 50px; margin-bottom: 1.5rem;" />
         <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 2rem;">Adventure awaits. Explore Sri Lanka’s stunning
           landscapes with us. Let’s make memories together!</p>
