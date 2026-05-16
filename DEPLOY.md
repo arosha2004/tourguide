@@ -69,16 +69,19 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ### Folder structure on server
 ```
 public_html/
-├── .htaccess          ← root htaccess (routes to public/)
+├── .htaccess          ← root htaccess (routes to public/, sitemap.xml, robots.txt)
 ├── app/
 │   ├── config/config.php
 │   ├── controllers/
+│   │   ├── SitemapController.php  ← serves /sitemap.xml
+│   │   └── ...
 │   ├── core/
 │   ├── models/
 │   └── views/
 └── public/
     ├── .htaccess      ← MVC router
     ├── index.php
+    ├── robots.txt     ← search engine crawl rules
     ├── styles.css
     ├── script.js
     ├── logo.png
@@ -113,8 +116,13 @@ Visit your domain and check:
 - [ ] Tours section shows cards with images
 - [ ] Clicking a tour opens the detail page with photos
 - [ ] Gallery page displays images
-- [ ] Contact page works
+- [ ] Contact form submits successfully
 - [ ] Admin panel: `yourdomain.com/admin` → add a test tour
+- [ ] `yourdomain.com/robots.txt` → shows crawl rules
+- [ ] `yourdomain.com/sitemap.xml` → shows XML sitemap with all pages
+- [ ] Submit sitemap to Google Search Console
+- [ ] Test structured data with: https://search.google.com/test/rich-results
+- [ ] Test Open Graph with: https://developers.facebook.com/tools/debug/
 
 ---
 
@@ -140,3 +148,5 @@ Delete these files from the server after a successful deploy:
 | DB connection error | Double-check `config.php` DB credentials match cPanel |
 | 404 on all pages | Ensure `mod_rewrite` is enabled; check both `.htaccess` files exist |
 | Redirects to localhost | Clear browser cache; URLROOT is now auto-detected |
+| sitemap.xml shows 404 | Ensure `SitemapController.php` was uploaded and `mod_rewrite` is on |
+| Contact form not sending | Configure cPanel email; PHP `mail()` needs an SMTP relay on Namecheap |

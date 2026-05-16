@@ -1,5 +1,40 @@
 <?php require '../app/views/inc/header.php'; ?>
 
+<!-- TouristTrip Structured Data for Rich Snippets -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "<?php echo addslashes(htmlspecialchars($data['tour']->title)); ?>",
+  "description": "<?php echo addslashes(htmlspecialchars(substr(strip_tags($data['tour']->description ?? ''), 0, 200))); ?>",
+  "image": "<?php echo htmlspecialchars(asset_url($data['tour']->image_url)); ?>",
+  "touristType": "Adventure",
+  "itinerary": {
+    "@type": "ItemList",
+    "name": "<?php echo addslashes(htmlspecialchars($data['tour']->title)); ?> Itinerary"
+  },
+  "provider": {
+    "@type": "TravelAgency",
+    "name": "The Ceylon Trek",
+    "url": "<?php echo URLROOT; ?>"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "<?php echo $data['tour']->price; ?>",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "<?php echo addslashes(htmlspecialchars($data['tour']->location)); ?>",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "LK"
+    }
+  }
+}
+</script>
+
 <main>
     <section class="tour-detail-section">
         <div class="tsd-container">

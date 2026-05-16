@@ -215,7 +215,16 @@
         </div>
 
         <div class="contact-form-wrapper reveal delay-1">
-          <form action="#" method="POST" class="contact-form">
+          <?php if (isset($data['success']) && $data['success']): ?>
+            <div style="background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; color: #2e7d32;">
+              ✓ Your message has been sent! We'll get back to you shortly.
+            </div>
+          <?php elseif (isset($data['error'])): ?>
+            <div style="background: #fdecea; border-left: 4px solid #f44336; padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; color: #c62828;">
+              ✕ <?php echo htmlspecialchars($data['error']); ?>
+            </div>
+          <?php endif; ?>
+          <form action="<?php echo URLROOT; ?>/contact/send" method="POST" class="contact-form">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>

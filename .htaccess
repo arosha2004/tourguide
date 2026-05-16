@@ -1,11 +1,17 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # -- Force HTTPS (uncomment on Namecheap production) --
+  # -- Force HTTPS (uncomment on production) --
   # RewriteCond %{HTTPS} off
   # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # -- Route everything through the public/ front-controller --
+  # -- Serve robots.txt directly from /public/ --
+  RewriteRule ^robots\.txt$ public/robots.txt [L]
+
+  # -- Route sitemap.xml through the sitemap controller --
+  RewriteRule ^sitemap\.xml$ public/index.php?url=sitemap [QSA,L]
+
+  # -- Route everything else through the public/ front-controller --
   RewriteRule ^$ public/ [L]
   RewriteRule (.*) public/$1 [L]
 </IfModule>
@@ -14,7 +20,15 @@
 Options -Indexes
 
 # Protect sensitive files from direct access
-<FilesMatch "^(config\.php|\.env)$">
+<FilesMatch "(config\.php|\.env|setup_db\.php|db_export\.php|migrate.*\.php|create_gallery\.php)$">
   Order allow,deny
   Deny from all
 </FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

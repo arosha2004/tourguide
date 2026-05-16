@@ -1,5 +1,6 @@
-<?php require APPROOT . '/views/inc/header.php'; ?>
+<?php require '../app/views/inc/header.php'; ?>
 
+<main>
 <section class="gallery-hero" style="padding: 100px 0 40px; text-align: center; background: #f9f9f9;">
     <div class="container">
         <span style="color: #4caf50; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 14px;">Capture the adventure</span>
@@ -27,6 +28,8 @@
         <?php endif; ?>
     </div>
 </section>
+
+</main>
 
 <div id="lightbox" class="lightbox">
     <span class="close-lightbox">&times;</span>
@@ -201,4 +204,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php require APPROOT . '/views/inc/footer.php'; ?>
+<?php require '../app/views/inc/footer.php'; ?>

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Block admin and utility paths
+Disallow: /admin
+Disallow: /admin/
+Disallow: /tours/search
+
+# Block sensitive/utility files
+Disallow: /setup_db.php
+Disallow: /db_export.php
+Disallow: /migrate_images.php
+Disallow: /migrate_tour_extras.php
+Disallow: /create_gallery.php
+
+# Sitemap
+Sitemap: https://ceylontrek.online/sitemap.xml

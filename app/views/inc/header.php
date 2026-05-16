@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><?php echo $data['title']; ?></title>
+  <title><?php echo htmlspecialchars($data['title']); ?></title>
   
   <?php
     $default_description = "The Ceylon Trek offers the best Sri Lanka hiking and trekking Tours. Explore unique trails, stunning waterfalls & misty peaks in Sri Lanka. Book Now!";
@@ -16,11 +16,18 @@
         ? (strpos($data['og_image'], 'http') === 0 ? $data['og_image'] : asset_url($data['og_image'])) 
         : URLROOT . '/public/logo.png';
         
-    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
-    $canonical_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    // Canonical URL: use only scheme + host + path (strip query strings for clean canonicals)
+    $request_path = strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
+    $canonical_url = $protocol . '://' . $_SERVER['HTTP_HOST'] . $request_path;
+    
+    // CSS asset version (update this string on each deployment, not time() which busts cache every request)
+    define('ASSET_VER', '1.0.5');
   ?>
   <meta name="description" content="<?php echo htmlspecialchars($description); ?>" />
   <meta name="keywords" content="<?php echo htmlspecialchars($keywords); ?>" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="The Ceylon Trek" />
   
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
@@ -28,15 +35,49 @@
   <meta property="og:title" content="<?php echo htmlspecialchars($data['title']); ?>" />
   <meta property="og:description" content="<?php echo htmlspecialchars($description); ?>" />
   <meta property="og:image" content="<?php echo htmlspecialchars($og_image); ?>" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="The Ceylon Trek" />
+  <meta property="og:locale" content="en_US" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<?php echo htmlspecialchars($data['title']); ?>" />
+  <meta name="twitter:description" content="<?php echo htmlspecialchars($description); ?>" />
+  <meta name="twitter:image" content="<?php echo htmlspecialchars($og_image); ?>" />
   
   <link rel="canonical" href="<?php echo htmlspecialchars($canonical_url); ?>" />
   
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "The Ceylon Trek",
+    "url": "<?php echo URLROOT; ?>",
+    "logo": "<?php echo URLROOT; ?>/public/logo.png",
+    "description": "<?php echo addslashes($description); ?>",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Colombo",
+      "addressCountry": "LK"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+94-77-756-2425",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Sinhala"]
+    },
+    "sameAs": []
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/styles.css?v=<?php echo time(); ?>" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/styles.css?v=<?php echo ASSET_VER; ?>" />
   <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/logo.png" />
 </head>
 <body>
@@ -58,11 +99,11 @@
   <?php endif; ?>
   <header class="header <?php echo !$is_home ? 'header-subpage' : ''; ?> <?php echo $hide_header_top ? 'header-hidden-top' : ''; ?>" id="header">
     <div class="container header-inner">
-      <a href="#home" class="brand">
+      <a href="<?php echo URLROOT; ?>/" class="brand" aria-label="The Ceylon Trek - Home">
         <img src="<?php echo URLROOT; ?>/public/logo.png" alt="The Ceylon Trek Logo" class="brand-logo" />
       </a>
       
-      <nav class="nav" id="navMenu">
+      <nav class="nav" id="navMenu" role="navigation" aria-label="Main navigation">
         <a href="<?php echo URLROOT; ?>/#home" class="nav-link <?php echo ($base_page == 'home' || $base_page == '') ? 'active' : ''; ?>">Home</a>
         <a href="<?php echo URLROOT; ?>/about" class="nav-link <?php echo ($base_page == 'about') ? 'active' : ''; ?>">About Us</a>
         <a href="<?php echo URLROOT; ?>/tours" class="nav-link <?php echo ($base_page == 'tours') ? 'active' : ''; ?>">Tours <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></a>

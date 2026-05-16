@@ -33,7 +33,7 @@
             ?>
             <article class="tour-card" style="margin-bottom: 2rem;">
               <div class="tour-img-wrapper">
-                <img src="<?php echo asset_url($tour->image_url); ?>" alt="<?php echo $tour->title; ?>" class="tour-img" />
+                <img src="<?php echo asset_url($tour->image_url); ?>" alt="<?php echo htmlspecialchars($tour->title); ?> - Sri Lanka Trekking" class="tour-img" loading="lazy" />
                 <div class="tour-badges">
                   <span class="badge-tag <?php echo $badge_class; ?>"><?php echo strtoupper($tour->badge); ?></span>
                   <button class="wishlist-btn" aria-label="Add to wishlist">
